@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aman &amp; Shivani — Wedding Invitation</title>
+  <title>Aman <span>संग</span> Shivani — Wedding Invitation</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -274,7 +274,7 @@
       transform: scale(-1, -1);
     }
 
-    /* Gentle float on each corner — staggered */
+    /* Gentle float on each corner — staggered 
     .hero-corner.tl {
       animation: cornerFloat 6s ease-in-out infinite 0s;
     }
@@ -289,6 +289,11 @@
 
     .hero-corner.br {
       animation: cornerFloat 6s ease-in-out infinite 4.5s;
+    } */
+
+    .hero-card-ornament,
+    .section-border-ornament {
+      display: none !important;
     }
 
     @keyframes cornerFloat {
@@ -1010,10 +1015,28 @@
       box-shadow: 7px 18px 0 -7px rgba(89, 161, 208, 0.34);
     }
 
-    .section-border-ornament.tl { top: 4px; left: 4px; }
-    .section-border-ornament.tr { top: 4px; right: 4px; transform: scaleX(-1); }
-    .section-border-ornament.bl { bottom: 4px; left: 4px; transform: scaleY(-1); }
-    .section-border-ornament.br { bottom: 4px; right: 4px; transform: scale(-1, -1); }
+    .section-border-ornament.tl {
+      top: 4px;
+      left: 4px;
+    }
+
+    .section-border-ornament.tr {
+      top: 4px;
+      right: 4px;
+      transform: scaleX(-1);
+    }
+
+    .section-border-ornament.bl {
+      bottom: 4px;
+      left: 4px;
+      transform: scaleY(-1);
+    }
+
+    .section-border-ornament.br {
+      bottom: 4px;
+      right: 4px;
+      transform: scale(-1, -1);
+    }
 
     /* Pearl beads along the side edges */
     .section-pearl {
@@ -1028,12 +1051,35 @@
       opacity: 0.78;
     }
 
-    .section-pearl.left { left: 7px; }
-    .section-pearl.right { right: 7px; }
-    .section-pearl.p1 { top: 24%; }
-    .section-pearl.p2 { top: 42%; width: 6px; height: 6px; }
-    .section-pearl.p3 { top: 61%; width: 7px; height: 7px; }
-    .section-pearl.p4 { top: 78%; width: 5px; height: 5px; }
+    .section-pearl.left {
+      left: 7px;
+    }
+
+    .section-pearl.right {
+      right: 7px;
+    }
+
+    .section-pearl.p1 {
+      top: 24%;
+    }
+
+    .section-pearl.p2 {
+      top: 42%;
+      width: 6px;
+      height: 6px;
+    }
+
+    .section-pearl.p3 {
+      top: 61%;
+      width: 7px;
+      height: 7px;
+    }
+
+    .section-pearl.p4 {
+      top: 78%;
+      width: 5px;
+      height: 5px;
+    }
 
     @media (max-width: 767px) {
       section:not(.no-card-frame) {
@@ -2144,11 +2190,6 @@
       align-items: center;
       gap: 0;
       position: relative;
-    }
-
-    /* Card occupies left or right column */
-    .st-row .sc {
-      width: 100%;
     }
 
     .st-row:nth-child(odd) .sc {
@@ -3497,13 +3538,12 @@
       display: inline-block;
       vertical-align: bottom;
       /*
-   * Cycle = 11s per chip:
-   *  0s   → 1.5s  ( 0%–13.6%) : type in  [steps(22)]
-   *  1.5s → 6.5s  (13.6%–59.1%): HOLD 5s [frozen]
-   *  6.5s → 7.3s  (59.1%–66.4%): erase   [steps(22)]
-   *  7.3s → 11s   (66.4%–100%) : PAUSE ~3.7s [invisible]
+   * Cycle = 12s per chip:
+   *  0s   → 1.5s  ( 0%–12.5%) : type in  [steps(22)]
+   *  1.5s → 10.5s (12.5%–87.5%): HOLD 9s [frozen]
+   *  10.5s → 12s  (87.5%–100%) : erase   [steps(22)]
    */
-      animation: hnType 11s infinite, hnCursor 11s infinite;
+      animation: hnType 12s infinite, hnCursor 12s infinite;
     }
 
     @keyframes hnType {
@@ -3512,21 +3552,15 @@
         animation-timing-function: steps(22, end);
       }
 
-      13.6% {
+      12.5% {
         max-width: 220px;
         animation-timing-function: step-end;
       }
 
-      /* hold 5s — frozen */
-      59.1% {
+      /* hold 9s — frozen */
+      87.5% {
         max-width: 220px;
         animation-timing-function: steps(22, end);
-      }
-
-      /* erase */
-      66.4% {
-        max-width: 0;
-        animation-timing-function: step-end;
       }
 
       100% {
@@ -3539,41 +3573,32 @@
         border-right: 2px solid var(--chip-color, var(--champagne));
       }
 
-      13.6% {
+      12.5% {
         border-right: 2px solid var(--chip-color, var(--champagne));
       }
 
-      /* blink 4× during 5s hold */
+      /* blink during 9s hold */
       20% {
         border-right: 2px solid transparent;
       }
 
-      26% {
+      35% {
         border-right: 2px solid var(--chip-color, var(--champagne));
-      }
-
-      32% {
-        border-right: 2px solid transparent;
-      }
-
-      38% {
-        border-right: 2px solid var(--chip-color, var(--champagne));
-      }
-
-      44% {
-        border-right: 2px solid transparent;
       }
 
       50% {
-        border-right: 2px solid var(--chip-color, var(--champagne));
-      }
-
-      56% {
         border-right: 2px solid transparent;
       }
 
-      /* disappear just before erase */
-      59.1% {
+      65% {
+        border-right: 2px solid var(--chip-color, var(--champagne));
+      }
+
+      80% {
+        border-right: 2px solid transparent;
+      }
+
+      87.5% {
         border-right: none;
       }
 
@@ -3582,66 +3607,9 @@
       }
     }
 
-    /* stagger: each chip 0.6s after previous */
-    .host-name-chip:nth-child(1) .hn-name {
-      animation-delay: 0s, 0s;
-    }
-
-    .host-name-chip:nth-child(2) .hn-name {
-      animation-delay: 0.6s, 0.6s;
-    }
-
-    .host-name-chip:nth-child(3) .hn-name {
-      animation-delay: 1.2s, 1.2s;
-    }
-
-    .host-name-chip:nth-child(4) .hn-name {
-      animation-delay: 1.8s, 1.8s;
-    }
-
-    .host-name-chip:nth-child(5) .hn-name {
-      animation-delay: 2.4s, 2.4s;
-    }
-
-    .host-name-chip:nth-child(6) .hn-name {
-      animation-delay: 3.0s, 3.0s;
-    }
-
-    .host-name-chip:nth-child(7) .hn-name {
-      animation-delay: 3.6s, 3.6s;
-    }
-
-    /* SVG underline — same 11s cycle */
+    /* SVG underline — same 12s cycle, no delays so they animate together */
     .hn-underline path {
-      animation: penStrokeLoop 11s ease infinite;
-    }
-
-    .host-name-chip:nth-child(1) .hn-underline path {
-      animation-delay: 0s;
-    }
-
-    .host-name-chip:nth-child(2) .hn-underline path {
-      animation-delay: 0.6s;
-    }
-
-    .host-name-chip:nth-child(3) .hn-underline path {
-      animation-delay: 1.2s;
-    }
-
-    .host-name-chip:nth-child(4) .hn-underline path {
-      animation-delay: 1.8s;
-    }
-
-    .host-name-chip:nth-child(5) .hn-underline path {
-      animation-delay: 2.4s;
-    }
-
-    .host-name-chip:nth-child(6) .hn-underline path {
-      animation-delay: 3.0s;
-    }
-
-    .host-name-chip:nth-child(7) .hn-underline path {
-      animation-delay: 3.6s;
+      animation: penStrokeLoop 12s ease infinite;
     }
 
     @keyframes penStrokeLoop {
@@ -3650,21 +3618,15 @@
         opacity: 0;
       }
 
-      13.6% {
+      12.5% {
         stroke-dashoffset: 0;
-        opacity: 0.65;
+        opacity: 0.9;
       }
 
-      /* hold 5s */
-      59.1% {
+      /* hold 9s */
+      87.5% {
         stroke-dashoffset: 0;
-        opacity: 0.65;
-      }
-
-      /* erase */
-      66.4% {
-        stroke-dashoffset: 120;
-        opacity: 0;
+        opacity: 0.9;
       }
 
       100% {
@@ -3678,7 +3640,7 @@
       font-family: 'Caveat', cursive;
       font-size: 16px;
       letter-spacing: 1px;
-      color: rgba(255, 255, 255, 0.65);
+      color: rgba(255, 255, 255, 0.9);
       margin-top: 1px;
       font-weight: 600;
       text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
@@ -6602,6 +6564,7 @@
     }
 
     @media (max-width: 767px) {
+
       section:not(.no-card-frame),
       .hero,
       .quote-band {
@@ -6647,7 +6610,7 @@
       box-shadow:
         0 0 0 1px var(--frame-soft),
         0 0 24px var(--frame-glow),
-        inset 0 0 18px rgba(255,255,255,.018);
+        inset 0 0 18px rgba(255, 255, 255, .018);
       background:
         linear-gradient(90deg, transparent 0 12%, var(--frame-accent) 50%, transparent 88%) top / 100% 1px no-repeat,
         linear-gradient(90deg, transparent 0 12%, var(--frame-accent) 50%, transparent 88%) bottom / 100% 1px no-repeat,
@@ -6695,9 +6658,9 @@
     /* Blessings & Beginnings / wedding-invitation panel */
     .quote-band {
       --frame-main: #e8b95b;
-      --frame-soft: rgba(232,185,91,.30);
+      --frame-soft: rgba(232, 185, 91, .30);
       --frame-accent: #ff77c8;
-      --frame-glow: rgba(232,185,91,.16);
+      --frame-glow: rgba(232, 185, 91, .16);
       --frame-radius: 30px;
       --frame-width: 1.45px;
       --frame-style: solid;
@@ -6718,7 +6681,7 @@
       box-shadow:
         0 0 0 1px var(--frame-soft),
         0 0 26px var(--frame-glow),
-        inset 0 0 22px rgba(255,255,255,.018);
+        inset 0 0 22px rgba(255, 255, 255, .018);
       background:
         linear-gradient(90deg, transparent 0 10%, var(--frame-accent) 50%, transparent 90%) top / 100% 1px no-repeat,
         linear-gradient(90deg, transparent 0 10%, var(--frame-accent) 50%, transparent 90%) bottom / 100% 1px no-repeat,
@@ -6728,9 +6691,9 @@
 
     .quote-band::after {
       inset: 20px;
-      border: 1px solid rgba(255,119,200,.38);
+      border: 1px solid rgba(255, 119, 200, .38);
       border-radius: 22px;
-      box-shadow: inset 0 0 22px rgba(232,185,91,.045);
+      box-shadow: inset 0 0 22px rgba(232, 185, 91, .045);
     }
 
     /* Let the outer frame own the panel edge; the inner glass card remains clean. */
@@ -6744,9 +6707,9 @@
        rounded jewel-style frame so the top and bottom edges read clearly. */
     section[data-section="wedding-day"] {
       --frame-main: #d8a84e;
-      --frame-soft: rgba(216,168,78,.34);
+      --frame-soft: rgba(216, 168, 78, .34);
       --frame-accent: #62d9ff;
-      --frame-glow: rgba(98,217,255,.15);
+      --frame-glow: rgba(98, 217, 255, .15);
       --frame-radius: 30px;
       --frame-width: 1.5px;
       --frame-style: solid;
@@ -6769,7 +6732,7 @@
       box-shadow:
         0 0 0 1px var(--frame-soft),
         0 0 28px var(--frame-glow),
-        inset 0 0 22px rgba(216,168,78,.025);
+        inset 0 0 22px rgba(216, 168, 78, .025);
       background:
         linear-gradient(90deg, transparent 0 8%, var(--frame-accent) 50%, transparent 92%) top / 100% 1px no-repeat,
         linear-gradient(90deg, transparent 0 8%, var(--frame-main) 50%, transparent 92%) bottom / 100% 1px no-repeat,
@@ -6779,10 +6742,10 @@
 
     section[data-section="wedding-day"]::after {
       inset: 21px;
-      border: 1px solid rgba(98,217,255,.34);
+      border: 1px solid rgba(98, 217, 255, .34);
       border-radius: 22px;
       border-style: solid;
-      box-shadow: inset 0 0 24px rgba(98,217,255,.035);
+      box-shadow: inset 0 0 24px rgba(98, 217, 255, .035);
     }
 
     @media (max-width: 767px) {
@@ -6825,9 +6788,9 @@
     /* 01 — Wedding Day: royal sapphire + antique gold, scalloped feel */
     section[data-section="wedding-day"] {
       --frame-main: #d9b45a;
-      --frame-soft: rgba(217,180,90,.30);
+      --frame-soft: rgba(217, 180, 90, .30);
       --frame-accent: #ffe6a0;
-      --frame-glow: rgba(217,180,90,.16);
+      --frame-glow: rgba(217, 180, 90, .16);
       --frame-radius: 30px;
       --frame-width: 1.5px;
       --frame-style: double;
@@ -6835,14 +6798,18 @@
       --ornament-b: #7fcfff;
       --ornament-c: #fff7dc;
     }
-    section[data-section="wedding-day"]::after { border-style: dashed; border-width: 1px; }
+
+    section[data-section="wedding-day"]::after {
+      border-style: dashed;
+      border-width: 1px;
+    }
 
     /* 02 — Countdown: electric cyan + violet, modern jewel border */
     section[data-section="countdown"] {
       --frame-main: #35e6ff;
-      --frame-soft: rgba(53,230,255,.28);
+      --frame-soft: rgba(53, 230, 255, .28);
       --frame-accent: #a98cff;
-      --frame-glow: rgba(53,230,255,.20);
+      --frame-glow: rgba(53, 230, 255, .20);
       --frame-radius: 22px;
       --frame-width: 1.4px;
       --frame-style: solid;
@@ -6850,14 +6817,17 @@
       --ornament-b: #b995ff;
       --ornament-c: #f1fbff;
     }
-    section[data-section="countdown"]::before { border-radius: 22px 40px 22px 40px; }
+
+    section[data-section="countdown"]::before {
+      border-radius: 22px 40px 22px 40px;
+    }
 
     /* 03 — Intro: blush pink + pearl white, soft floral frame */
     section[data-section="intro"] {
       --frame-main: #ff83c5;
-      --frame-soft: rgba(255,131,197,.27);
+      --frame-soft: rgba(255, 131, 197, .27);
       --frame-accent: #ffd2ea;
-      --frame-glow: rgba(255,95,176,.17);
+      --frame-glow: rgba(255, 95, 176, .17);
       --frame-radius: 34px;
       --frame-width: 1.3px;
       --frame-style: solid;
@@ -6865,15 +6835,22 @@
       --ornament-b: #ffcfdf;
       --ornament-c: #fff7fb;
     }
-    section[data-section="intro"]::before { border-style: double; border-width: 3px; }
-    section[data-section="intro"]::after { border-style: dotted; }
+
+    section[data-section="intro"]::before {
+      border-style: double;
+      border-width: 3px;
+    }
+
+    section[data-section="intro"]::after {
+      border-style: dotted;
+    }
 
     /* 04 — Family: amethyst + champagne, ornate diamond frame */
     section[data-section="family"] {
       --frame-main: #c5a4ff;
-      --frame-soft: rgba(197,164,255,.25);
+      --frame-soft: rgba(197, 164, 255, .25);
       --frame-accent: #f1c77a;
-      --frame-glow: rgba(167,139,250,.17);
+      --frame-glow: rgba(167, 139, 250, .17);
       --frame-radius: 28px;
       --frame-width: 1.35px;
       --frame-style: solid;
@@ -6881,15 +6858,21 @@
       --ornament-b: #f1c77a;
       --ornament-c: #f8f0ff;
     }
-    section[data-section="family"]::before { border-radius: 36px 18px 36px 18px; }
-    section[data-section="family"]::after { transform: rotate(0.12deg); }
+
+    section[data-section="family"]::before {
+      border-radius: 36px 18px 36px 18px;
+    }
+
+    section[data-section="family"]::after {
+      transform: rotate(0.12deg);
+    }
 
     /* 05 — Balagrah: emerald + turquoise, traditional garden frame */
     section[data-section="balagrah"] {
       --frame-main: #5fe0bd;
-      --frame-soft: rgba(95,224,189,.24);
+      --frame-soft: rgba(95, 224, 189, .24);
       --frame-accent: #77dfff;
-      --frame-glow: rgba(95,224,189,.16);
+      --frame-glow: rgba(95, 224, 189, .16);
       --frame-radius: 24px;
       --frame-width: 1.5px;
       --frame-style: dashed;
@@ -6897,14 +6880,18 @@
       --ornament-b: #72dfff;
       --ornament-c: #eafff8;
     }
-    section[data-section="balagrah"]::after { border-style: solid; border-width: 1px; }
+
+    section[data-section="balagrah"]::after {
+      border-style: solid;
+      border-width: 1px;
+    }
 
     /* 06 — Hosts: ruby + rose-gold, romantic jewel frame */
     section[data-section="hosts"] {
       --frame-main: #ff6f91;
-      --frame-soft: rgba(255,111,145,.25);
+      --frame-soft: rgba(255, 111, 145, .25);
       --frame-accent: #ffc08b;
-      --frame-glow: rgba(255,111,145,.18);
+      --frame-glow: rgba(255, 111, 145, .18);
       --frame-radius: 32px;
       --frame-width: 1.45px;
       --frame-style: solid;
@@ -6912,15 +6899,22 @@
       --ornament-b: #ffc08b;
       --ornament-c: #fff0f3;
     }
-    section[data-section="hosts"]::before { border-style: double; border-width: 2px; }
-    section[data-section="hosts"]::after { border-style: dashed; }
+
+    section[data-section="hosts"]::before {
+      border-style: double;
+      border-width: 2px;
+    }
+
+    section[data-section="hosts"]::after {
+      border-style: dashed;
+    }
 
     /* 07 — Festivities: marigold + coral, festive Indian-card border */
     section[data-section="festivities"] {
       --frame-main: #f7c44b;
-      --frame-soft: rgba(247,196,75,.27);
+      --frame-soft: rgba(247, 196, 75, .27);
       --frame-accent: #ff7b57;
-      --frame-glow: rgba(247,196,75,.17);
+      --frame-glow: rgba(247, 196, 75, .17);
       --frame-radius: 26px;
       --frame-width: 1.5px;
       --frame-style: solid;
@@ -6928,15 +6922,21 @@
       --ornament-b: #ff805c;
       --ornament-c: #fff6d6;
     }
-    section[data-section="festivities"]::before { border-radius: 18px 34px 18px 34px; }
-    section[data-section="festivities"]::after { border-style: dotted; }
+
+    section[data-section="festivities"]::before {
+      border-radius: 18px 34px 18px 34px;
+    }
+
+    section[data-section="festivities"]::after {
+      border-style: dotted;
+    }
 
     /* 08 — Story: orchid + magenta, graceful curved frame */
     section[data-section="story"] {
       --frame-main: #d78cff;
-      --frame-soft: rgba(215,140,255,.25);
+      --frame-soft: rgba(215, 140, 255, .25);
       --frame-accent: #ff70bd;
-      --frame-glow: rgba(215,140,255,.18);
+      --frame-glow: rgba(215, 140, 255, .18);
       --frame-radius: 38px;
       --frame-width: 1.35px;
       --frame-style: solid;
@@ -6944,14 +6944,18 @@
       --ornament-b: #ff70bd;
       --ornament-c: #fff1ff;
     }
-    section[data-section="story"]::before { border-style: double; border-width: 3px; }
+
+    section[data-section="story"]::before {
+      border-style: double;
+      border-width: 3px;
+    }
 
     /* 09 — Gallery: icy blue + aqua, crystal-photo frame */
     section[data-section="gallery"] {
       --frame-main: #8ee9ff;
-      --frame-soft: rgba(142,233,255,.28);
+      --frame-soft: rgba(142, 233, 255, .28);
       --frame-accent: #55b7ff;
-      --frame-glow: rgba(85,183,255,.18);
+      --frame-glow: rgba(85, 183, 255, .18);
       --frame-radius: 20px;
       --frame-width: 1.5px;
       --frame-style: solid;
@@ -6959,15 +6963,21 @@
       --ornament-b: #55b7ff;
       --ornament-c: #f3fdff;
     }
-    section[data-section="gallery"]::before { border-radius: 20px; }
-    section[data-section="gallery"]::after { border-style: dashed; }
+
+    section[data-section="gallery"]::before {
+      border-radius: 20px;
+    }
+
+    section[data-section="gallery"]::after {
+      border-style: dashed;
+    }
 
     /* 10 — RSVP: mint + champagne, elegant final-card frame */
     section[data-section="rsvp"] {
       --frame-main: #9de7c5;
-      --frame-soft: rgba(157,231,197,.25);
+      --frame-soft: rgba(157, 231, 197, .25);
       --frame-accent: #e4c77b;
-      --frame-glow: rgba(157,231,197,.17);
+      --frame-glow: rgba(157, 231, 197, .17);
       --frame-radius: 34px;
       --frame-width: 1.45px;
       --frame-style: solid;
@@ -6975,12 +6985,26 @@
       --ornament-b: #e4c77b;
       --ornament-c: #f4fff9;
     }
-    section[data-section="rsvp"]::before { border-style: double; border-width: 3px; }
-    section[data-section="rsvp"]::after { border-style: dotted; }
+
+    section[data-section="rsvp"]::before {
+      border-style: double;
+      border-width: 3px;
+    }
+
+    section[data-section="rsvp"]::after {
+      border-style: dotted;
+    }
 
     @media (max-width: 767px) {
-      section:not(.no-card-frame)::before { inset: 9px; border-radius: max(16px, calc(var(--frame-radius) - 7px)); }
-      section:not(.no-card-frame)::after { inset: 16px; border-radius: max(11px, calc(var(--frame-radius) - 14px)); }
+      section:not(.no-card-frame)::before {
+        inset: 9px;
+        border-radius: max(16px, calc(var(--frame-radius) - 7px));
+      }
+
+      section:not(.no-card-frame)::after {
+        inset: 16px;
+        border-radius: max(11px, calc(var(--frame-radius) - 14px));
+      }
     }
 
 
@@ -6996,16 +7020,39 @@
       z-index: 34;
       pointer-events: none;
       opacity: .96;
-      filter: drop-shadow(0 4px 10px rgba(0,0,0,.35));
+      filter: drop-shadow(0 4px 10px rgba(0, 0, 0, .35));
     }
-    .hero-card-ornament.tl { top: 5px; left: 5px; }
-    .hero-card-ornament.tr { top: 5px; right: 5px; transform: scaleX(-1); }
-    .hero-card-ornament.bl { bottom: 5px; left: 5px; transform: scaleY(-1); }
-    .hero-card-ornament.br { bottom: 5px; right: 5px; transform: scale(-1,-1); }
+
+    .hero-card-ornament.tl {
+      top: 5px;
+      left: 5px;
+    }
+
+    .hero-card-ornament.tr {
+      top: 5px;
+      right: 5px;
+      transform: scaleX(-1);
+    }
+
+    .hero-card-ornament.bl {
+      bottom: 5px;
+      left: 5px;
+      transform: scaleY(-1);
+    }
+
+    .hero-card-ornament.br {
+      bottom: 5px;
+      right: 5px;
+      transform: scale(-1, -1);
+    }
 
     .hero-card-ornament .bloom {
-      position:absolute; left:12px; top:12px; width:42px; height:42px;
-      border-radius:50%;
+      position: absolute;
+      left: 12px;
+      top: 12px;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
       background:
         radial-gradient(circle at 50% 50%, #f7df91 0 5px, transparent 6px),
         radial-gradient(ellipse at 50% 9%, #8fdcff 0 8px, transparent 9px),
@@ -7013,50 +7060,117 @@
         radial-gradient(ellipse at 77% 82%, #b9ecff 0 8px, transparent 9px),
         radial-gradient(ellipse at 23% 82%, #ff72c3 0 8px, transparent 9px),
         radial-gradient(ellipse at 10% 35%, #75d8ff 0 8px, transparent 9px);
-      box-shadow: 0 0 12px rgba(94,231,255,.16);
+      box-shadow: 0 0 12px rgba(94, 231, 255, .16);
     }
+
     .hero-card-ornament .ribbon {
-      position:absolute; width:112px; height:30px; left:-24px; top:58px;
-      border-radius:80% 20% 70% 30%; transform:rotate(-42deg);
-      background:linear-gradient(135deg, rgba(105,202,255,.72), rgba(255,114,195,.38) 55%, transparent 76%);
-      box-shadow: 7px 19px 0 -8px rgba(94,231,255,.36);
+      position: absolute;
+      width: 112px;
+      height: 30px;
+      left: -24px;
+      top: 58px;
+      border-radius: 80% 20% 70% 30%;
+      transform: rotate(-42deg);
+      background: linear-gradient(135deg, rgba(105, 202, 255, .72), rgba(255, 114, 195, .38) 55%, transparent 76%);
+      box-shadow: 7px 19px 0 -8px rgba(94, 231, 255, .36);
     }
+
     .hero-card-ornament .sprig {
-      position:absolute; width:60px; height:2px; left:38px; top:25px;
-      background:linear-gradient(90deg, rgba(91,228,255,.8), rgba(255,114,195,.75), rgba(244,185,66,.65));
-      transform:rotate(-42deg); transform-origin:left center;
-      box-shadow: 0 5px 0 -0.5px rgba(91,228,255,.28);
+      position: absolute;
+      width: 60px;
+      height: 2px;
+      left: 38px;
+      top: 25px;
+      background: linear-gradient(90deg, rgba(91, 228, 255, .8), rgba(255, 114, 195, .75), rgba(244, 185, 66, .65));
+      transform: rotate(-42deg);
+      transform-origin: left center;
+      box-shadow: 0 5px 0 -0.5px rgba(91, 228, 255, .28);
     }
+
     .hero-card-ornament .pearl {
-      position:absolute; display:block; border-radius:50%;
-      background:radial-gradient(circle at 35% 30%, #fff 0 18%, #d8e8f2 42%, #91b4c7 100%);
-      box-shadow:0 0 6px rgba(224,244,255,.48);
+      position: absolute;
+      display: block;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #fff 0 18%, #d8e8f2 42%, #91b4c7 100%);
+      box-shadow: 0 0 6px rgba(224, 244, 255, .48);
     }
-    .hero-card-ornament .p1 { width:12px; height:12px; left:56px; top:20px; }
-    .hero-card-ornament .p2 { width:8px; height:8px; left:69px; top:37px; }
-    .hero-card-ornament .p3 { width:15px; height:15px; left:48px; top:49px; }
+
+    .hero-card-ornament .p1 {
+      width: 12px;
+      height: 12px;
+      left: 56px;
+      top: 20px;
+    }
+
+    .hero-card-ornament .p2 {
+      width: 8px;
+      height: 8px;
+      left: 69px;
+      top: 37px;
+    }
+
+    .hero-card-ornament .p3 {
+      width: 15px;
+      height: 15px;
+      left: 48px;
+      top: 49px;
+    }
 
     /* Make the hero frame itself ornamental: double outer rule + dotted inner rule. */
     .hero::before {
       background:
-        linear-gradient(90deg, transparent 0 8%, rgba(91,228,255,.9) 22%, rgba(255,114,195,.95) 50%, rgba(244,185,66,.9) 78%, transparent 92%) top / 100% 2px no-repeat,
-        linear-gradient(90deg, transparent 0 8%, rgba(244,185,66,.9) 22%, rgba(255,114,195,.95) 50%, rgba(91,228,255,.9) 78%, transparent 92%) bottom / 100% 2px no-repeat,
-        linear-gradient(180deg, transparent 0 8%, rgba(91,228,255,.9) 22%, rgba(255,114,195,.95) 50%, rgba(244,185,66,.9) 78%, transparent 92%) left / 2px 100% no-repeat,
-        linear-gradient(180deg, transparent 0 8%, rgba(244,185,66,.9) 22%, rgba(255,114,195,.95) 50%, rgba(91,228,255,.9) 78%, transparent 92%) right / 2px 100% no-repeat !important;
+        linear-gradient(90deg, transparent 0 8%, rgba(91, 228, 255, .9) 22%, rgba(255, 114, 195, .95) 50%, rgba(244, 185, 66, .9) 78%, transparent 92%) top / 100% 2px no-repeat,
+        linear-gradient(90deg, transparent 0 8%, rgba(244, 185, 66, .9) 22%, rgba(255, 114, 195, .95) 50%, rgba(91, 228, 255, .9) 78%, transparent 92%) bottom / 100% 2px no-repeat,
+        linear-gradient(180deg, transparent 0 8%, rgba(91, 228, 255, .9) 22%, rgba(255, 114, 195, .95) 50%, rgba(244, 185, 66, .9) 78%, transparent 92%) left / 2px 100% no-repeat,
+        linear-gradient(180deg, transparent 0 8%, rgba(244, 185, 66, .9) 22%, rgba(255, 114, 195, .95) 50%, rgba(91, 228, 255, .9) 78%, transparent 92%) right / 2px 100% no-repeat !important;
       border-style: double !important;
       border-width: 3px !important;
     }
-    .hero::after { border-style: dotted !important; }
+
+    .hero::after {
+      border-style: dotted !important;
+    }
 
     @media (max-width: 767px) {
-      .hero-card-ornament { width:82px; height:82px; opacity:.88; }
-      .hero-card-ornament.tl { top:4px; left:4px; }
-      .hero-card-ornament.tr { top:4px; right:4px; }
-      .hero-card-ornament.bl { bottom:4px; left:4px; }
-      .hero-card-ornament.br { bottom:4px; right:4px; }
-      .hero-card-ornament .bloom { transform:scale(.78); transform-origin:top left; }
-      .hero-card-ornament .ribbon { transform:rotate(-42deg) scale(.76); transform-origin:left center; }
-      .hero-card-ornament .sprig { transform:rotate(-42deg) scale(.78); }
+      .hero-card-ornament {
+        width: 82px;
+        height: 82px;
+        opacity: .88;
+      }
+
+      .hero-card-ornament.tl {
+        top: 4px;
+        left: 4px;
+      }
+
+      .hero-card-ornament.tr {
+        top: 4px;
+        right: 4px;
+      }
+
+      .hero-card-ornament.bl {
+        bottom: 4px;
+        left: 4px;
+      }
+
+      .hero-card-ornament.br {
+        bottom: 4px;
+        right: 4px;
+      }
+
+      .hero-card-ornament .bloom {
+        transform: scale(.78);
+        transform-origin: top left;
+      }
+
+      .hero-card-ornament .ribbon {
+        transform: rotate(-42deg) scale(.76);
+        transform-origin: left center;
+      }
+
+      .hero-card-ornament .sprig {
+        transform: rotate(-42deg) scale(.78);
+      }
     }
 
     /* ═══════════════════════════════════════════════════════════
@@ -7076,9 +7190,9 @@
       overflow: hidden !important;
       isolation: isolate !important;
       box-shadow:
-        0 0 0 1px rgba(217,180,90,.12),
-        0 16px 55px rgba(0,0,0,.28),
-        inset 0 0 45px rgba(94,231,255,.025) !important;
+        0 0 0 1px rgba(217, 180, 90, .12),
+        0 16px 55px rgba(0, 0, 0, .28),
+        inset 0 0 45px rgba(94, 231, 255, .025) !important;
     }
 
     /* Complete outer frame: all four edges are explicitly drawn. */
@@ -7097,9 +7211,9 @@
         linear-gradient(180deg, transparent 0 8%, var(--invite-secondary) 30%, var(--invite-pink) 50%, var(--invite-main) 72%, transparent 92%) left / 2px 100% no-repeat,
         linear-gradient(180deg, transparent 0 8%, var(--invite-main) 30%, var(--invite-pink) 50%, var(--invite-secondary) 72%, transparent 92%) right / 2px 100% no-repeat !important;
       box-shadow:
-        0 0 0 1px rgba(217,180,90,.20),
-        0 0 22px rgba(94,231,255,.10),
-        inset 0 0 24px rgba(255,114,195,.025) !important;
+        0 0 0 1px rgba(217, 180, 90, .20),
+        0 0 22px rgba(94, 231, 255, .10),
+        inset 0 0 24px rgba(255, 114, 195, .025) !important;
     }
 
     /* Inner rounded hairline for the physical-card effect. */
@@ -7109,16 +7223,18 @@
       inset: 21px !important;
       z-index: 30 !important;
       pointer-events: none !important;
-      border: 1px solid rgba(94,231,255,.52) !important;
+      border: 1px solid rgba(94, 231, 255, .52) !important;
       border-radius: 22px !important;
       box-sizing: border-box !important;
       box-shadow:
-        inset 0 0 0 1px rgba(255,114,195,.10),
-        inset 0 0 18px rgba(217,180,90,.025) !important;
+        inset 0 0 0 1px rgba(255, 114, 195, .10),
+        inset 0 0 18px rgba(217, 180, 90, .025) !important;
     }
 
     /* Four visible corner jewels — gold, cyan and pink. */
-    .hero::marker { display: none; }
+    .hero::marker {
+      display: none;
+    }
 
     @media (max-width: 767px) {
       .hero {
@@ -7140,7 +7256,7 @@
       }
     }
 
-  
+
 
     /* ═══════════════════════════════════════════════════════════════
        FLORAL STRING / GARLAND BORDER
@@ -7172,33 +7288,65 @@
     /* top & bottom: full-width strips, 28px tall */
     .sf-strip.sf-top,
     .sf-strip.sf-bottom {
-      left: 0; right: 0;
+      left: 0;
+      right: 0;
       height: 28px;
       background-size: 72px 100%;
     }
-    .sf-strip.sf-top    { top: 9px; }
-    .sf-strip.sf-bottom { bottom: 9px; }
+
+    .sf-strip.sf-top {
+      top: 9px;
+    }
+
+    .sf-strip.sf-bottom {
+      bottom: 9px;
+    }
 
     /* left & right: full-height strips, 28px wide */
     .sf-strip.sf-left,
     .sf-strip.sf-right {
-      top: 0; bottom: 0;
+      top: 0;
+      bottom: 0;
       width: 28px;
       background-size: 100% 72px;
     }
-    .sf-strip.sf-left  { left: 9px; }
-    .sf-strip.sf-right { right: 9px; }
+
+    .sf-strip.sf-left {
+      left: 9px;
+    }
+
+    .sf-strip.sf-right {
+      right: 9px;
+    }
 
     /* On mobile, tighten the strips */
     @media (max-width: 767px) {
+
       .sf-strip.sf-top,
-      .sf-strip.sf-bottom { height: 22px; }
-      .sf-strip.sf-top    { top: 6px; }
-      .sf-strip.sf-bottom { bottom: 6px; }
+      .sf-strip.sf-bottom {
+        height: 22px;
+      }
+
+      .sf-strip.sf-top {
+        top: 6px;
+      }
+
+      .sf-strip.sf-bottom {
+        bottom: 6px;
+      }
+
       .sf-strip.sf-left,
-      .sf-strip.sf-right  { width: 22px; }
-      .sf-strip.sf-left   { left: 6px; }
-      .sf-strip.sf-right  { right: 6px; }
+      .sf-strip.sf-right {
+        width: 22px;
+      }
+
+      .sf-strip.sf-left {
+        left: 6px;
+      }
+
+      .sf-strip.sf-right {
+        right: 6px;
+      }
     }
 
 
@@ -7214,16 +7362,39 @@
       z-index: 34;
       pointer-events: none;
       opacity: .96;
-      filter: drop-shadow(0 4px 10px rgba(0,0,0,.35));
+      filter: drop-shadow(0 4px 10px rgba(0, 0, 0, .35));
     }
-    .hero-card-ornament.tl { top: 5px; left: 5px; }
-    .hero-card-ornament.tr { top: 5px; right: 5px; transform: scaleX(-1); }
-    .hero-card-ornament.bl { bottom: 5px; left: 5px; transform: scaleY(-1); }
-    .hero-card-ornament.br { bottom: 5px; right: 5px; transform: scale(-1,-1); }
+
+    .hero-card-ornament.tl {
+      top: 5px;
+      left: 5px;
+    }
+
+    .hero-card-ornament.tr {
+      top: 5px;
+      right: 5px;
+      transform: scaleX(-1);
+    }
+
+    .hero-card-ornament.bl {
+      bottom: 5px;
+      left: 5px;
+      transform: scaleY(-1);
+    }
+
+    .hero-card-ornament.br {
+      bottom: 5px;
+      right: 5px;
+      transform: scale(-1, -1);
+    }
 
     .hero-card-ornament .bloom {
-      position:absolute; left:12px; top:12px; width:42px; height:42px;
-      border-radius:50%;
+      position: absolute;
+      left: 12px;
+      top: 12px;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
       background:
         radial-gradient(circle at 50% 50%, #f7df91 0 5px, transparent 6px),
         radial-gradient(ellipse at 50% 9%, #8fdcff 0 8px, transparent 9px),
@@ -7231,50 +7402,117 @@
         radial-gradient(ellipse at 77% 82%, #b9ecff 0 8px, transparent 9px),
         radial-gradient(ellipse at 23% 82%, #ff72c3 0 8px, transparent 9px),
         radial-gradient(ellipse at 10% 35%, #75d8ff 0 8px, transparent 9px);
-      box-shadow: 0 0 12px rgba(94,231,255,.16);
+      box-shadow: 0 0 12px rgba(94, 231, 255, .16);
     }
+
     .hero-card-ornament .ribbon {
-      position:absolute; width:112px; height:30px; left:-24px; top:58px;
-      border-radius:80% 20% 70% 30%; transform:rotate(-42deg);
-      background:linear-gradient(135deg, rgba(105,202,255,.72), rgba(255,114,195,.38) 55%, transparent 76%);
-      box-shadow: 7px 19px 0 -8px rgba(94,231,255,.36);
+      position: absolute;
+      width: 112px;
+      height: 30px;
+      left: -24px;
+      top: 58px;
+      border-radius: 80% 20% 70% 30%;
+      transform: rotate(-42deg);
+      background: linear-gradient(135deg, rgba(105, 202, 255, .72), rgba(255, 114, 195, .38) 55%, transparent 76%);
+      box-shadow: 7px 19px 0 -8px rgba(94, 231, 255, .36);
     }
+
     .hero-card-ornament .sprig {
-      position:absolute; width:60px; height:2px; left:38px; top:25px;
-      background:linear-gradient(90deg, rgba(91,228,255,.8), rgba(255,114,195,.75), rgba(244,185,66,.65));
-      transform:rotate(-42deg); transform-origin:left center;
-      box-shadow: 0 5px 0 -0.5px rgba(91,228,255,.28);
+      position: absolute;
+      width: 60px;
+      height: 2px;
+      left: 38px;
+      top: 25px;
+      background: linear-gradient(90deg, rgba(91, 228, 255, .8), rgba(255, 114, 195, .75), rgba(244, 185, 66, .65));
+      transform: rotate(-42deg);
+      transform-origin: left center;
+      box-shadow: 0 5px 0 -0.5px rgba(91, 228, 255, .28);
     }
+
     .hero-card-ornament .pearl {
-      position:absolute; display:block; border-radius:50%;
-      background:radial-gradient(circle at 35% 30%, #fff 0 18%, #d8e8f2 42%, #91b4c7 100%);
-      box-shadow:0 0 6px rgba(224,244,255,.48);
+      position: absolute;
+      display: block;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #fff 0 18%, #d8e8f2 42%, #91b4c7 100%);
+      box-shadow: 0 0 6px rgba(224, 244, 255, .48);
     }
-    .hero-card-ornament .p1 { width:12px; height:12px; left:56px; top:20px; }
-    .hero-card-ornament .p2 { width:8px; height:8px; left:69px; top:37px; }
-    .hero-card-ornament .p3 { width:15px; height:15px; left:48px; top:49px; }
+
+    .hero-card-ornament .p1 {
+      width: 12px;
+      height: 12px;
+      left: 56px;
+      top: 20px;
+    }
+
+    .hero-card-ornament .p2 {
+      width: 8px;
+      height: 8px;
+      left: 69px;
+      top: 37px;
+    }
+
+    .hero-card-ornament .p3 {
+      width: 15px;
+      height: 15px;
+      left: 48px;
+      top: 49px;
+    }
 
     /* Make the hero frame itself ornamental: double outer rule + dotted inner rule. */
     .hero::before {
       background:
-        linear-gradient(90deg, transparent 0 8%, rgba(91,228,255,.9) 22%, rgba(255,114,195,.95) 50%, rgba(244,185,66,.9) 78%, transparent 92%) top / 100% 2px no-repeat,
-        linear-gradient(90deg, transparent 0 8%, rgba(244,185,66,.9) 22%, rgba(255,114,195,.95) 50%, rgba(91,228,255,.9) 78%, transparent 92%) bottom / 100% 2px no-repeat,
-        linear-gradient(180deg, transparent 0 8%, rgba(91,228,255,.9) 22%, rgba(255,114,195,.95) 50%, rgba(244,185,66,.9) 78%, transparent 92%) left / 2px 100% no-repeat,
-        linear-gradient(180deg, transparent 0 8%, rgba(244,185,66,.9) 22%, rgba(255,114,195,.95) 50%, rgba(91,228,255,.9) 78%, transparent 92%) right / 2px 100% no-repeat !important;
+        linear-gradient(90deg, transparent 0 8%, rgba(91, 228, 255, .9) 22%, rgba(255, 114, 195, .95) 50%, rgba(244, 185, 66, .9) 78%, transparent 92%) top / 100% 2px no-repeat,
+        linear-gradient(90deg, transparent 0 8%, rgba(244, 185, 66, .9) 22%, rgba(255, 114, 195, .95) 50%, rgba(91, 228, 255, .9) 78%, transparent 92%) bottom / 100% 2px no-repeat,
+        linear-gradient(180deg, transparent 0 8%, rgba(91, 228, 255, .9) 22%, rgba(255, 114, 195, .95) 50%, rgba(244, 185, 66, .9) 78%, transparent 92%) left / 2px 100% no-repeat,
+        linear-gradient(180deg, transparent 0 8%, rgba(244, 185, 66, .9) 22%, rgba(255, 114, 195, .95) 50%, rgba(91, 228, 255, .9) 78%, transparent 92%) right / 2px 100% no-repeat !important;
       border-style: double !important;
       border-width: 3px !important;
     }
-    .hero::after { border-style: dotted !important; }
+
+    .hero::after {
+      border-style: dotted !important;
+    }
 
     @media (max-width: 767px) {
-      .hero-card-ornament { width:82px; height:82px; opacity:.88; }
-      .hero-card-ornament.tl { top:4px; left:4px; }
-      .hero-card-ornament.tr { top:4px; right:4px; }
-      .hero-card-ornament.bl { bottom:4px; left:4px; }
-      .hero-card-ornament.br { bottom:4px; right:4px; }
-      .hero-card-ornament .bloom { transform:scale(.78); transform-origin:top left; }
-      .hero-card-ornament .ribbon { transform:rotate(-42deg) scale(.76); transform-origin:left center; }
-      .hero-card-ornament .sprig { transform:rotate(-42deg) scale(.78); }
+      .hero-card-ornament {
+        width: 82px;
+        height: 82px;
+        opacity: .88;
+      }
+
+      .hero-card-ornament.tl {
+        top: 4px;
+        left: 4px;
+      }
+
+      .hero-card-ornament.tr {
+        top: 4px;
+        right: 4px;
+      }
+
+      .hero-card-ornament.bl {
+        bottom: 4px;
+        left: 4px;
+      }
+
+      .hero-card-ornament.br {
+        bottom: 4px;
+        right: 4px;
+      }
+
+      .hero-card-ornament .bloom {
+        transform: scale(.78);
+        transform-origin: top left;
+      }
+
+      .hero-card-ornament .ribbon {
+        transform: rotate(-42deg) scale(.76);
+        transform-origin: left center;
+      }
+
+      .hero-card-ornament .sprig {
+        transform: rotate(-42deg) scale(.78);
+      }
     }
 
     /* ═══════════════════════════════════════════════════════════
@@ -7294,9 +7532,9 @@
       overflow: hidden !important;
       isolation: isolate !important;
       box-shadow:
-        0 0 0 1px rgba(217,180,90,.12),
-        0 16px 55px rgba(0,0,0,.28),
-        inset 0 0 45px rgba(94,231,255,.025) !important;
+        0 0 0 1px rgba(217, 180, 90, .12),
+        0 16px 55px rgba(0, 0, 0, .28),
+        inset 0 0 45px rgba(94, 231, 255, .025) !important;
     }
 
     /* Complete outer frame: all four edges are explicitly drawn. */
@@ -7315,9 +7553,9 @@
         linear-gradient(180deg, transparent 0 8%, var(--invite-secondary) 30%, var(--invite-pink) 50%, var(--invite-main) 72%, transparent 92%) left / 2px 100% no-repeat,
         linear-gradient(180deg, transparent 0 8%, var(--invite-main) 30%, var(--invite-pink) 50%, var(--invite-secondary) 72%, transparent 92%) right / 2px 100% no-repeat !important;
       box-shadow:
-        0 0 0 1px rgba(217,180,90,.20),
-        0 0 22px rgba(94,231,255,.10),
-        inset 0 0 24px rgba(255,114,195,.025) !important;
+        0 0 0 1px rgba(217, 180, 90, .20),
+        0 0 22px rgba(94, 231, 255, .10),
+        inset 0 0 24px rgba(255, 114, 195, .025) !important;
     }
 
     /* Inner rounded hairline for the physical-card effect. */
@@ -7327,16 +7565,18 @@
       inset: 21px !important;
       z-index: 30 !important;
       pointer-events: none !important;
-      border: 1px solid rgba(94,231,255,.52) !important;
+      border: 1px solid rgba(94, 231, 255, .52) !important;
       border-radius: 22px !important;
       box-sizing: border-box !important;
       box-shadow:
-        inset 0 0 0 1px rgba(255,114,195,.10),
-        inset 0 0 18px rgba(217,180,90,.025) !important;
+        inset 0 0 0 1px rgba(255, 114, 195, .10),
+        inset 0 0 18px rgba(217, 180, 90, .025) !important;
     }
 
     /* Four visible corner jewels — gold, cyan and pink. */
-    .hero::marker { display: none; }
+    .hero::marker {
+      display: none;
+    }
 
     @media (max-width: 767px) {
       .hero {
@@ -7357,9 +7597,7 @@
         border-radius: 18px !important;
       }
     }
-
-  
-</style>
+  </style>
 </head>
 
 <body>
@@ -7406,8 +7644,8 @@
   <div id="entry-gate">
     <div class="gate-inner">
       <p class="gate-orn">✦</p>
-      <div class="gate-title">Aman <span>&amp;</span> Shivani</div>
-      <p class="gate-sub">request the honour of your presence at our wedding</p>
+      <div class="gate-title">Aman <span>संग</span> Shivani</div>
+      <p class="gate-sub">Request the honour of your presence at our wedding</p>
       <!-- Optional guest name field -->
       <div class="gate-name-wrap">
         <input type="text" id="gate-name-input" class="gate-name-input" placeholder="Your name (optional)"
@@ -7416,10 +7654,10 @@
       <div class="gate-side-wrap" aria-label="Choose invitation side">
         <div class="fest-tabs">
           <button class="fest-tab-btn" data-side="groom" data-target="gate-side" type="button">
-            <span>वर पक्ष (Groom&rsquo;s Side)</span>
+            <span>वर पक्ष (Groom)</span>
           </button>
           <button class="fest-tab-btn" data-side="bride" data-target="gate-side" type="button">
-            <span>वधू पक्ष (Bride&rsquo;s Side)</span>
+            <span>वधू पक्ष (Bride)</span>
           </button>
         </div>
       </div>
@@ -7464,10 +7702,14 @@
     <!-- ══ Physical wedding-card frame ══ -->
     <!-- Hero-specific colorful floral corner clusters. These remain visible
          independently of the legacy hero frame elements. -->
-    <span class="hero-card-ornament tl" aria-hidden="true"><i class="bloom"></i><i class="pearl p1"></i><i class="pearl p2"></i><i class="pearl p3"></i><i class="ribbon"></i><i class="sprig"></i></span>
-    <span class="hero-card-ornament tr" aria-hidden="true"><i class="bloom"></i><i class="pearl p1"></i><i class="pearl p2"></i><i class="pearl p3"></i><i class="ribbon"></i><i class="sprig"></i></span>
-    <span class="hero-card-ornament bl" aria-hidden="true"><i class="bloom"></i><i class="pearl p1"></i><i class="pearl p2"></i><i class="pearl p3"></i><i class="ribbon"></i><i class="sprig"></i></span>
-    <span class="hero-card-ornament br" aria-hidden="true"><i class="bloom"></i><i class="pearl p1"></i><i class="pearl p2"></i><i class="pearl p3"></i><i class="ribbon"></i><i class="sprig"></i></span>
+    <span class="hero-card-ornament tl" aria-hidden="true"><i class="bloom"></i><i class="pearl p1"></i><i
+        class="pearl p2"></i><i class="pearl p3"></i><i class="ribbon"></i><i class="sprig"></i></span>
+    <span class="hero-card-ornament tr" aria-hidden="true"><i class="bloom"></i><i class="pearl p1"></i><i
+        class="pearl p2"></i><i class="pearl p3"></i><i class="ribbon"></i><i class="sprig"></i></span>
+    <span class="hero-card-ornament bl" aria-hidden="true"><i class="bloom"></i><i class="pearl p1"></i><i
+        class="pearl p2"></i><i class="pearl p3"></i><i class="ribbon"></i><i class="sprig"></i></span>
+    <span class="hero-card-ornament br" aria-hidden="true"><i class="bloom"></i><i class="pearl p1"></i><i
+        class="pearl p2"></i><i class="pearl p3"></i><i class="ribbon"></i><i class="sprig"></i></span>
 
     <!-- Outer & inner gold rule borders -->
     <div class="hero-outer-frame"></div>
@@ -7694,7 +7936,7 @@
         <span class="name-a lw"><span class="ltr" style="animation-delay:0.60s">A</span><span class="ltr"
             style="animation-delay:0.67s">m</span><span class="ltr" style="animation-delay:0.74s">a</span><span
             class="ltr" style="animation-delay:0.81s">n</span></span>
-        <span class="name-amp">&amp;</span>
+        <span class="name-amp">संग</span>
         <span class="name-b lw"><span class="ltr" style="animation-delay:1.05s">S</span><span class="ltr"
             style="animation-delay:1.12s">h</span><span class="ltr" style="animation-delay:1.19s">i</span><span
             class="ltr" style="animation-delay:1.26s">v</span><span class="ltr"
@@ -7835,7 +8077,7 @@
       <p class="q-text">
         &ldquo;हमारी खुशियों के इस खास दिन में शामिल होकर इसे और भी यादगार बनाएं।&rdquo;
       </p>
-      <p class="q-attr">— Aman &amp; Shivani</p>
+      <p class="q-attr">— Aman संग Shivani</p>
     </div>
   </div>
 
@@ -8476,7 +8718,7 @@
         <p class="hosts-carousel-label">Groom&rsquo;s Side</p>
         <div class="hosts-name-track">
 
-          <div class="host-name-chip" style="--chip-color:#f4d06f">
+          <div class="host-name-chip" style="--chip-color:#f7e06f">
             <span class="hn-name">परमानंद पंडित</span>
             <span class="hn-rel">पापा</span>
             <svg class="hn-underline" viewBox="0 0 120 8" preserveAspectRatio="none" aria-hidden="true">
@@ -8485,7 +8727,7 @@
           </div>
 
 
-          <div class="host-name-chip" style="--chip-color:#w2306f">
+          <div class="host-name-chip" style="--chip-color:#a5f3fc">
             <span class="hn-name">आशीष पंडित</span>
             <span class="hn-rel">भैया</span>
             <svg class="hn-underline" viewBox="0 0 120 8" preserveAspectRatio="none" aria-hidden="true">
@@ -8517,8 +8759,8 @@
               <path d="M2 5 Q30 2 60 5 Q90 8 118 4" />
             </svg>
           </div>
-          
-          <div class="host-name-chip" style="--chip-color:#tr4899">
+
+          <div class="host-name-chip" style="--chip-color:#845ee9">
             <span class="hn-name">श्यामवती देवी</span>
             <span class="hn-rel">फुआ</span>
             <svg class="hn-underline" viewBox="0 0 120 8" preserveAspectRatio="none" aria-hidden="true">
@@ -8533,39 +8775,45 @@
               <path d="M2 5 Q30 2 60 5 Q90 8 118 4" />
             </svg>
           </div>
-          
-            <div class="host-name-chip" style="--chip-color:#90e8f9">
+
+          <div class="host-name-chip" style="--chip-color:#90e8f9">
             <span class="hn-name">उत्कर्ष</span>
             <span class="hn-rel">भाई</span>
             <svg class="hn-underline" viewBox="0 0 120 8" preserveAspectRatio="none" aria-hidden="true">
               <path d="M2 5 Q30 2 60 5 Q90 8 118 4" />
             </svg>
           </div>
-          
-            <div class="host-name-chip" style="--chip-color:#81s2f9">
+
+          <div class="host-name-chip" style="--chip-color:#8182f9">
             <span class="hn-name">प्रत्युष</span>
             <span class="hn-rel">भाई </span>
             <svg class="hn-underline" viewBox="0 0 120 8" preserveAspectRatio="none" aria-hidden="true">
               <path d="M2 5 Q30 2 60 5 Q90 8 118 4" />
             </svg>
           </div>
-          
-            <div class="host-name-chip" style="--chip-color:#39e7t9">
-            <span class="hn-name">अनिकेत</span>
+
+          <div class="host-name-chip" style="--chip-color:#86efac">
+            <span class="hn-name">सोना</span>
             <span class="hn-rel">भाई</span>
             <svg class="hn-underline" viewBox="0 0 120 8" preserveAspectRatio="none" aria-hidden="true">
               <path d="M2 5 Q30 2 60 5 Q90 8 118 4" />
             </svg>
           </div>
-          
-            <div class="host-name-chip" style="--chip-color:#37t8f9">
+
+          <div class="host-name-chip" style="--chip-color:#fc2185">
             <span class="hn-name">सोमू</span>
             <span class="hn-rel">भाई </span>
             <svg class="hn-underline" viewBox="0 0 120 8" preserveAspectRatio="none" aria-hidden="true">
               <path d="M2 5 Q30 2 60 5 Q90 8 118 4" />
             </svg>
           </div>
-          
+          <div class="host-name-chip" style="--chip-color:#ec2175">
+            <span class="hn-name">शुग्गु</span>
+            <span class="hn-rel">भाई </span>
+            <svg class="hn-underline" viewBox="0 0 120 8" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M2 5 Q30 2 60 5 Q90 8 118 4" />
+            </svg>
+          </div>
 
           <div class="host-name-chip" style="--chip-color:#fca5d0">
             <span class="hn-name">यश </span>
@@ -8583,8 +8831,8 @@
               <path d="M2 5 Q30 2 60 5 Q90 8 118 4" />
             </svg>
           </div>
-          
-            <div class="host-name-chip" style="--chip-color:#67et39">
+
+          <div class="host-name-chip" style="--chip-color:#67ef39">
             <span class="hn-name">आरव</span>
             <span class="hn-rel">भाई</span>
             <svg class="hn-underline" viewBox="0 0 120 8" preserveAspectRatio="none" aria-hidden="true">
@@ -9310,7 +9558,7 @@
             <circle cx="193" cy="100" r="3.5" fill="#c9aa72" opacity="0.8" />
           </svg>
           <div class="photo-frame">
-            <img src="couple-pose-4.jpg" alt="Aman &amp; Shivani" loading="lazy" />
+            <img src="couple-pose-4.jpg" alt="Aman संग Shivani" loading="lazy" />
           </div>
         </div>
 
@@ -9449,7 +9697,7 @@
       <span class="ft-orn-gem">✦</span>
       <span class="ft-orn-line"></span>
     </div>
-    <p class="ft-names">Aman &amp; Shivani</p>
+    <p class="ft-names">Aman संग Shivani</p>
     <p class="shloka-devanagari" style="font-size:clamp(13px,3vw,17px);margin:10px 0 4px;opacity:0.85;">
       यत्र नार्यस्तु पूज्यन्ते, रमन्ते तत्र देवताः।
     </p>
@@ -9725,8 +9973,9 @@
       var card = document.getElementById('mp-card');
       if (!audio || !card) return;
 
-      var isPlaying = false;   /* true = user wants music playing */
-      var userPaused = false;   /* true only when the user explicitly clicked pause */
+      var isPlaying = false;   /* true = music is actively playing */
+      var userPaused = false;  /* true only when the user explicitly clicked pause */
+      var hasStarted = false;  /* true once playback has succeeded at least once */
 
       /* ── Sync visual state on card ── */
       function syncState() {
@@ -9749,31 +9998,83 @@
 
       /* ── Actually start playback ── */
       function doPlay(fadeDuration) {
+        if (userPaused) return;  /* respect user's explicit pause */
         var p = audio.play();
         if (p !== undefined) {
           p.then(function () {
             isPlaying = true;
+            hasStarted = true;
             userPaused = false;
             syncState();
             fadeIn(0.72, fadeDuration || 1800);
+            removeAutoplayListeners();  /* stop retrying once it works */
           }).catch(function () {
             isPlaying = false;
             syncState();
+            /* Don't give up — listeners will keep retrying on next interaction */
           });
         } else {
           isPlaying = true;
+          hasStarted = true;
           userPaused = false;
           syncState();
           fadeIn(0.72, fadeDuration || 1800);
+          removeAutoplayListeners();
         }
       }
 
       /* ── Wait for enough data before playing ── */
       function startPlay(fadeDuration) {
         userPaused = false;
-        /* Start directly from the user's tap. iOS/Safari can then load the MP3
-           without losing the user-gesture playback permission. */
         doPlay(fadeDuration);
+      }
+
+      /* ══════════════════════════════════════════════
+         AGGRESSIVE AUTOPLAY — retry on ANY user gesture
+         Modern browsers require a user gesture (click, tap,
+         scroll, keydown) before allowing audio.play().
+         We attach listeners to ALL gesture types and retry
+         until playback succeeds, then clean up.
+      ══════════════════════════════════════════════ */
+      var autoplayEvents = ['click', 'touchstart', 'touchend', 'scroll', 'keydown', 'mousedown', 'pointerdown'];
+
+      function attemptAutoplay() {
+        if (hasStarted || userPaused) return;
+        if (!document.body.classList.contains('entered')) return;
+        doPlay(1800);
+      }
+
+      function addAutoplayListeners() {
+        autoplayEvents.forEach(function (evt) {
+          document.addEventListener(evt, attemptAutoplay, { once: false, passive: true, capture: true });
+        });
+      }
+
+      function removeAutoplayListeners() {
+        autoplayEvents.forEach(function (evt) {
+          document.removeEventListener(evt, attemptAutoplay, { capture: true });
+        });
+        if (retryInterval) {
+          clearInterval(retryInterval);
+          retryInterval = null;
+        }
+      }
+
+      /* Also retry periodically every 2 seconds in case gesture-based
+         retries keep failing (some browsers unlock after a delay) */
+      var retryInterval = null;
+      function startRetryInterval() {
+        if (retryInterval) return;
+        retryInterval = setInterval(function () {
+          if (hasStarted || userPaused) {
+            clearInterval(retryInterval);
+            retryInterval = null;
+            return;
+          }
+          if (document.body.classList.contains('entered')) {
+            doPlay(1800);
+          }
+        }, 2000);
       }
 
       /* ── Click / keyboard toggle ── */
@@ -9783,7 +10084,9 @@
           isPlaying = false;
           userPaused = true;   /* user deliberately stopped it */
           syncState();
+          removeAutoplayListeners();
         } else {
+          userPaused = false;
           startPlay(900);
         }
       }
@@ -9804,11 +10107,16 @@
             window.applyInvitationSide();
           }
           startPlay(3200);
+          /* If the first attempt failed (browser blocked it), set up
+             aggressive retries on any subsequent user interaction */
           setTimeout(function () {
-            if (!userPaused && audio.paused) {
+            if (!hasStarted && !userPaused) {
+              addAutoplayListeners();
+              startRetryInterval();
+              /* Also retry immediately after a short delay */
               startPlay(900);
             }
-          }, 1200);
+          }, 800);
         });
       }
 
@@ -9816,20 +10124,20 @@
          but ONLY if the user did NOT explicitly pause it.             ── */
       document.addEventListener('visibilitychange', function () {
         if (!document.body.classList.contains('entered')) return;
-        if (!document.hidden && isPlaying && audio.paused && !userPaused) {
+        if (!document.hidden && !audio.paused) return; /* still playing, nothing to do */
+        if (!document.hidden && hasStarted && !userPaused) {
           audio.play().then(function () {
             isPlaying = true;
             syncState();
           }).catch(function () {
-            isPlaying = false;
-            syncState();
+            /* Will retry on next interaction */
           });
         }
       });
 
-      /* ── audio.pause() can fire from browser (not user) — ignore those ── */
+      /* ── audio.pause() can fire from browser (not user) — resume ── */
       audio.addEventListener('pause', function () {
-        if (!userPaused && !document.hidden) {
+        if (!userPaused && !document.hidden && hasStarted) {
           audio.play().then(function () {
             isPlaying = true;
             syncState();
@@ -9848,6 +10156,7 @@
 
       audio.addEventListener('play', function () {
         isPlaying = true;
+        hasStarted = true;
         syncState();
       });
 
@@ -10786,426 +11095,428 @@
        Each design: wavy vine + bloom at centre + buds + leaves.
   ═══════════════════════════════════════════════════════════════ -->
   <script>
-  (function () {
-    'use strict';
-
-    /* ════════════════════════════════════════════
-       COLOUR HELPERS
-    ════════════════════════════════════════════ */
-    function parseColor(str) {
-      var c = (str || '').trim();
-      var h = c.match(/^#([0-9a-f]{3,8})$/i);
-      if (h) {
-        var s = h[1];
-        if (s.length === 3) s = s[0]+s[0]+s[1]+s[1]+s[2]+s[2];
-        return { r:parseInt(s.slice(0,2),16), g:parseInt(s.slice(2,4),16),
-                 b:parseInt(s.slice(4,6),16), a:1 };
-      }
-      var m = c.match(/rgba?\s*\(\s*([\d.]+)[,\s]+([\d.]+)[,\s]+([\d.]+)(?:[,\/\s]+([\d.]+))?\s*\)/i);
-      if (m) return { r:+m[1], g:+m[2], b:+m[3], a:m[4]!=null?+m[4]:1 };
-      return { r:160, g:160, b:160, a:1 };
-    }
-    function rgba(str, a) {
-      var p = parseColor(str);
-      return 'rgba('+p.r+','+p.g+','+p.b+','+(a!=null?a:p.a)+')';
-    }
-    function lighten(str, n) {
-      var p = parseColor(str);
-      return 'rgb('+Math.min(255,p.r+n)+','+Math.min(255,p.g+n)+','+Math.min(255,p.b+n)+')';
-    }
-    function darken(str, n) {
-      var p = parseColor(str);
-      return 'rgb('+Math.max(0,p.r-n)+','+Math.max(0,p.g-n)+','+Math.max(0,p.b-n)+')';
-    }
-
-    /* ════════════════════════════════════════════
-       SHARED HELPERS — vine path + leaf + bud
-    ════════════════════════════════════════════ */
-
-    /* Horizontal wavy vine across W×H tile, gap around cx±gap */
-    function horizVine(W, H, gap, vine) {
-      var mid = H / 2, cx = W / 2;
-      return '<path d="M0,' + mid +
-        ' C8,' + (mid-5) + ' 16,' + (mid+5) + ' 24,' + mid +
-        ' C32,' + (mid-5) + ' 40,' + (mid+5) + ' ' + (cx-gap) + ',' + mid +
-        ' M' + (cx+gap) + ',' + mid +
-        ' C' + (cx+12) + ',' + (mid-5) + ' ' + (cx+20) + ',' + (mid+5) + ' ' + (cx+28) + ',' + mid +
-        ' C' + (cx+36) + ',' + (mid-5) + ' ' + (cx+44) + ',' + (mid+5) + ' ' + W + ',' + mid + '"' +
-        ' stroke="' + vine + '" stroke-width="1.2" fill="none" opacity="0.68"/>';
-    }
-    /* Vertical wavy vine across W×H tile, gap around cy±gap */
-    function vertVine(W, H, gap, vine) {
-      var mid = W / 2, cy = H / 2;
-      return '<path d="M' + mid + ',0' +
-        ' C' + (mid-5) + ',8 ' + (mid+5) + ',16 ' + mid + ',24' +
-        ' C' + (mid-5) + ',32 ' + (mid+5) + ',40 ' + mid + ',' + (cy-gap) +
-        ' M' + mid + ',' + (cy+gap) +
-        ' C' + (mid-5) + ',' + (cy+12) + ' ' + (mid+5) + ',' + (cy+20) + ' ' + mid + ',' + (cy+28) +
-        ' C' + (mid-5) + ',' + (cy+36) + ' ' + (mid+5) + ',' + (cy+44) + ' ' + mid + ',' + H + '"' +
-        ' stroke="' + vine + '" stroke-width="1.2" fill="none" opacity="0.68"/>';
-    }
-
-    /* Small almond leaf at (lx,ly), pointing right (flip=-1 for left) */
-    function leaf(lx, ly, flip, leafCol, leafD) {
-      var s = flip || 1;
-      return '<path d="M' + lx + ',' + ly +
-             ' C' + (lx+s*8) + ',' + (ly-6) + ' ' + (lx+s*11) + ',' + (ly-1) + ' ' + (lx+s*5) + ',' + (ly+4) + ' Z"' +
-             ' fill="' + leafCol + '" opacity="0.76"/>' +
-             '<line x1="' + lx + '" y1="' + ly + '" x2="' + (lx+s*9) + '" y2="' + (ly+0.5) + '"' +
-             ' stroke="' + leafD + '" stroke-width="0.55" opacity="0.5"/>';
-    }
-    /* Vertical leaf pointing down (flip=-1 for up) */
-    function leafV(lx, ly, flip, leafCol, leafD) {
-      var s = flip || 1;
-      return '<path d="M' + lx + ',' + ly +
-             ' C' + (lx-6) + ',' + (ly+s*8) + ' ' + (lx-1) + ',' + (ly+s*11) + ' ' + (lx+4) + ',' + (ly+s*5) + ' Z"' +
-             ' fill="' + leafCol + '" opacity="0.76"/>' +
-             '<line x1="' + lx + '" y1="' + ly + '" x2="' + (lx+0.5) + '" y2="' + (ly+s*9) + '"' +
-             ' stroke="' + leafD + '" stroke-width="0.55" opacity="0.5"/>';
-    }
-
-    /* Horizontal stem (vine→bloom) */
-    function stemH(cx, mid, cy, vine) {
-      return '<line x1="' + cx + '" y1="' + mid + '" x2="' + cx + '" y2="' + cy + '"' +
-             ' stroke="' + vine + '" stroke-width="0.9" opacity="0.65"/>';
-    }
-    /* Vertical stem */
-    function stemV(mid, cy, bx, vine) {
-      return '<line x1="' + mid + '" y1="' + cy + '" x2="' + bx + '" y2="' + cy + '"' +
-             ' stroke="' + vine + '" stroke-width="0.9" opacity="0.65"/>';
-    }
-
-    /* Wrap SVG content in a tile */
-    function wrapSVG(W, H, body) {
-      return '<svg xmlns="http://www.w3.org/2000/svg" width="' + W + '" height="' + H + '"' +
-             ' viewBox="0 0 ' + W + ' ' + H + '" overflow="visible">' + body + '</svg>';
-    }
-    function toDataURI(svg) {
-      return 'data:image/svg+xml,' + encodeURIComponent(svg);
-    }
-
-    /* ════════════════════════════════════════════════════════════
-       6 FLOWER BLOOM BUILDERS
-       Each returns an SVG fragment string centred at (cx, cy).
-       vert=true rotates the layout 90° for side strips.
-    ════════════════════════════════════════════════════════════ */
-
-    /* ── 1. ROSE  (5-petal layered rose, for intro / hero) ─── */
-    function bloomRose(cx, cy, c) {
-      var p = '', ip = '';
-      for (var i = 0; i < 5; i++) {
-        var a = (i*72-90)*Math.PI/180;
-        var ox = cx+Math.cos(a)*5.8, oy = cy+Math.sin(a)*5.8;
-        p += '<ellipse cx="'+ox.toFixed(1)+'" cy="'+oy.toFixed(1)+'" rx="5.2" ry="3.3"' +
-             ' transform="rotate('+(i*72-90)+' '+ox.toFixed(1)+' '+oy.toFixed(1)+')"' +
-             ' fill="'+(i%2===0?c.main:lighten(c.main,38))+'" opacity="0.92"/>';
-      }
-      for (var j = 0; j < 5; j++) {
-        var a2 = (j*72-54)*Math.PI/180;
-        var ix = cx+Math.cos(a2)*3.1, iy = cy+Math.sin(a2)*3.1;
-        ip += '<ellipse cx="'+ix.toFixed(1)+'" cy="'+iy.toFixed(1)+'" rx="3" ry="1.9"' +
-              ' transform="rotate('+(j*72-54)+' '+ix.toFixed(1)+' '+iy.toFixed(1)+')"' +
-              ' fill="'+darken(c.main,28)+'" opacity="0.86"/>';
-      }
-      return p + ip +
-             '<circle cx="'+cx+'" cy="'+cy+'" r="2.3" fill="'+c.centre+'" opacity="0.96"/>';
-    }
-
-    /* ── 2. LOTUS  (pointed petals, for family / balagrah) ── */
-    function bloomLotus(cx, cy, c) {
-      var r = '', stroke = darken(c.main, 20);
-      /* 6 outer pointed petals */
-      for (var i = 0; i < 6; i++) {
-        var a = (i*60-90)*Math.PI/180;
-        var tipX = cx+Math.cos(a)*10, tipY = cy+Math.sin(a)*10;
-        var lX = cx+Math.cos(a-0.45)*5, lY = cy+Math.sin(a-0.45)*5;
-        var rX = cx+Math.cos(a+0.45)*5, rY = cy+Math.sin(a+0.45)*5;
-        r += '<path d="M'+cx+','+cy+' Q'+lX.toFixed(1)+','+lY.toFixed(1)+' '+tipX.toFixed(1)+','+tipY.toFixed(1)+
-             ' Q'+rX.toFixed(1)+','+rY.toFixed(1)+' '+cx+','+cy+' Z"' +
-             ' fill="'+(i%2===0?c.main:lighten(c.main,30))+'" stroke="'+stroke+'" stroke-width="0.4" opacity="0.88"/>';
-      }
-      /* 4 inner petals, half size */
-      for (var j = 0; j < 4; j++) {
-        var a2 = (j*90-45)*Math.PI/180;
-        var t2x = cx+Math.cos(a2)*5.5, t2y = cy+Math.sin(a2)*5.5;
-        var l2x = cx+Math.cos(a2-0.5)*3, l2y = cy+Math.sin(a2-0.5)*3;
-        var r2x = cx+Math.cos(a2+0.5)*3, r2y = cy+Math.sin(a2+0.5)*3;
-        r += '<path d="M'+cx+','+cy+' Q'+l2x.toFixed(1)+','+l2y.toFixed(1)+' '+t2x.toFixed(1)+','+t2y.toFixed(1)+
-             ' Q'+r2x.toFixed(1)+','+r2y.toFixed(1)+' '+cx+','+cy+' Z"' +
-             ' fill="'+lighten(c.main,50)+'" opacity="0.8"/>';
-      }
-      return r + '<circle cx="'+cx+'" cy="'+cy+'" r="2.8" fill="'+lighten(c.centre,20)+'" opacity="0.95"/>';
-    }
-
-    /* ── 3. MARIGOLD  (many tiny petals in rings, for festivities / wedding-day) ── */
-    function bloomMarigold(cx, cy, c) {
-      var r = '';
-      /* outer ring: 12 petals */
-      for (var i = 0; i < 12; i++) {
-        var a = (i*30)*Math.PI/180;
-        var px = cx+Math.cos(a)*7.5, py = cy+Math.sin(a)*7.5;
-        r += '<ellipse cx="'+px.toFixed(1)+'" cy="'+py.toFixed(1)+'" rx="3.5" ry="2"' +
-             ' transform="rotate('+(i*30)+' '+px.toFixed(1)+' '+py.toFixed(1)+')"' +
-             ' fill="'+(i%3===0?c.main:i%3===1?lighten(c.main,35):darken(c.main,15))+'" opacity="0.88"/>';
-      }
-      /* inner ring: 8 petals */
-      for (var j = 0; j < 8; j++) {
-        var a2 = (j*45+22.5)*Math.PI/180;
-        var jx = cx+Math.cos(a2)*4, jy = cy+Math.sin(a2)*4;
-        r += '<ellipse cx="'+jx.toFixed(1)+'" cy="'+jy.toFixed(1)+'" rx="2.5" ry="1.5"' +
-             ' transform="rotate('+(j*45+22.5)+' '+jx.toFixed(1)+' '+jy.toFixed(1)+')"' +
-             ' fill="'+lighten(c.main,20)+'" opacity="0.86"/>';
-      }
-      return r + '<circle cx="'+cx+'" cy="'+cy+'" r="2.5" fill="'+c.centre+'" opacity="0.97"/>';
-    }
-
-    /* ── 4. PLUMERIA / FRANGIPANI (5 wide petals, for hosts / story) ── */
-    function bloomPlumeria(cx, cy, c) {
-      var r = '';
-      for (var i = 0; i < 5; i++) {
-        var a = (i*72-90)*Math.PI/180;
-        /* petal base points */
-        var bLa = a - 0.38, bRa = a + 0.38;
-        var bLx = cx+Math.cos(bLa)*4, bLy = cy+Math.sin(bLa)*4;
-        var bRx = cx+Math.cos(bRa)*4, bRy = cy+Math.sin(bRa)*4;
-        /* petal tip */
-        var tipX = cx+Math.cos(a)*11.5, tipY = cy+Math.sin(a)*11.5;
-        /* ctrl points — rounded tip */
-        var c1x = cx+Math.cos(a-0.28)*9.5, c1y = cy+Math.sin(a-0.28)*9.5;
-        var c2x = cx+Math.cos(a+0.28)*9.5, c2y = cy+Math.sin(a+0.28)*9.5;
-        var fill = i%2===0 ? c.main : lighten(c.main, 45);
-        r += '<path d="M'+bLx.toFixed(1)+','+bLy.toFixed(1)+
-             ' Q'+c1x.toFixed(1)+','+c1y.toFixed(1)+' '+tipX.toFixed(1)+','+tipY.toFixed(1)+
-             ' Q'+c2x.toFixed(1)+','+c2y.toFixed(1)+' '+bRx.toFixed(1)+','+bRy.toFixed(1)+' Z"' +
-             ' fill="'+fill+'" opacity="0.9"/>';
-        /* centre stripe on each petal */
-        r += '<line x1="'+cx+'" y1="'+cy+'" x2="'+tipX.toFixed(1)+'" y2="'+tipY.toFixed(1)+'"' +
-             ' stroke="'+lighten(c.main,55)+'" stroke-width="0.7" opacity="0.5"/>';
-      }
-      return r + '<circle cx="'+cx+'" cy="'+cy+'" r="3" fill="'+c.centre+'" opacity="0.96"/>';
-    }
-
-    /* ── 5. CHERRY BLOSSOM (4 heart-shaped petals + 1, for gallery / countdown) ── */
-    function bloomCherryBlossom(cx, cy, c) {
-      var r = '';
-      var pCol = lighten(c.main, 50);
-      var pColD = c.main;
-      for (var i = 0; i < 5; i++) {
-        var a = (i*72-90)*Math.PI/180;
-        var tipX = cx+Math.cos(a)*9, tipY = cy+Math.sin(a)*9;
-        /* heart-shaped: two lobes */
-        var la = a - 0.55, ra = a + 0.55;
-        var lLx = cx+Math.cos(la)*6.5, lLy = cy+Math.sin(la)*6.5;
-        var lRx = cx+Math.cos(ra)*6.5, lRy = cy+Math.sin(ra)*6.5;
-        var baseLa = a-0.3, baseRa = a+0.3;
-        var bLx = cx+Math.cos(baseLa)*3.5, bLy = cy+Math.sin(baseLa)*3.5;
-        var bRx = cx+Math.cos(baseRa)*3.5, bRy = cy+Math.sin(baseRa)*3.5;
-        r += '<path d="M'+bLx.toFixed(1)+','+bLy.toFixed(1)+
-             ' Q'+lLx.toFixed(1)+','+lLy.toFixed(1)+' '+tipX.toFixed(1)+','+tipY.toFixed(1)+
-             ' Q'+lRx.toFixed(1)+','+lRy.toFixed(1)+' '+bRx.toFixed(1)+','+bRy.toFixed(1)+' Z"' +
-             ' fill="'+(i%2===0?pCol:pColD)+'" opacity="0.9"/>';
-      }
-      /* stamens */
-      for (var k = 0; k < 8; k++) {
-        var sa = (k*45)*Math.PI/180;
-        var sx = cx+Math.cos(sa)*5.5, sy = cy+Math.sin(sa)*5.5;
-        r += '<line x1="'+cx+'" y1="'+cy+'" x2="'+sx.toFixed(1)+'" y2="'+sy.toFixed(1)+'"' +
-             ' stroke="'+c.centre+'" stroke-width="0.6" opacity="0.55"/>' +
-             '<circle cx="'+sx.toFixed(1)+'" cy="'+sy.toFixed(1)+'" r="0.8" fill="'+c.centre+'" opacity="0.7"/>';
-      }
-      return r + '<circle cx="'+cx+'" cy="'+cy+'" r="2" fill="'+lighten(c.centre,30)+'" opacity="0.95"/>';
-    }
-
-    /* ── 6. HIBISCUS (5 trumpet petals with prominent stamens, for rsvp / balagrah) ── */
-    function bloomHibiscus(cx, cy, c) {
-      var r = '';
-      var deep = darken(c.main, 35);
-      for (var i = 0; i < 5; i++) {
-        var a = (i*72-90)*Math.PI/180;
-        var tipX = cx+Math.cos(a)*11, tipY = cy+Math.sin(a)*11;
-        var la = a-0.42, ra = a+0.42;
-        var lW = cx+Math.cos(la)*8, lH = cy+Math.sin(la)*8;
-        var rW = cx+Math.cos(ra)*8, rH = cy+Math.sin(ra)*8;
-        var bLx = cx+Math.cos(a-0.32)*3.5, bLy = cy+Math.sin(a-0.32)*3.5;
-        var bRx = cx+Math.cos(a+0.32)*3.5, bRy = cy+Math.sin(a+0.32)*3.5;
-        /* main petal */
-        r += '<path d="M'+bLx.toFixed(1)+','+bLy.toFixed(1)+
-             ' Q'+lW.toFixed(1)+','+lH.toFixed(1)+' '+tipX.toFixed(1)+','+tipY.toFixed(1)+
-             ' Q'+rW.toFixed(1)+','+rH.toFixed(1)+' '+bRx.toFixed(1)+','+bRy.toFixed(1)+' Z"' +
-             ' fill="'+(i%2===0?c.main:lighten(c.main,30))+'" opacity="0.88"/>';
-        /* vein lines */
-        r += '<line x1="'+cx+'" y1="'+cy+'" x2="'+tipX.toFixed(1)+'" y2="'+tipY.toFixed(1)+'"' +
-             ' stroke="'+deep+'" stroke-width="0.55" opacity="0.4"/>';
-      }
-      /* stamen column */
-      for (var k = 0; k < 7; k++) {
-        var sa = (k*51.4)*Math.PI/180;
-        var sx = cx+Math.cos(sa)*4.5, sy = cy+Math.sin(sa)*4.5;
-        r += '<circle cx="'+sx.toFixed(1)+'" cy="'+sy.toFixed(1)+'" r="0.9" fill="'+c.centre+'" opacity="0.8"/>';
-      }
-      return r + '<circle cx="'+cx+'" cy="'+cy+'" r="2.5" fill="'+darken(c.centre,10)+'" opacity="0.95"/>';
-    }
-
-    /* ════════════════════════════════════════════════════════════
-       SECTION → FLOWER DESIGN MAPPING
-    ════════════════════════════════════════════════════════════ */
-    var flowerMap = {
-      'hero':        bloomRose,
-      'intro':       bloomRose,
-      'wedding-day': bloomMarigold,
-      'countdown':   bloomCherryBlossom,
-      'family':      bloomLotus,
-      'balagrah':    bloomHibiscus,
-      'hosts':       bloomPlumeria,
-      'festivities': bloomMarigold,
-      'story':       bloomPlumeria,
-      'gallery':     bloomCherryBlossom,
-      'rsvp':        bloomHibiscus,
-      'quote-band':  bloomLotus
-    };
-
-    /* ════════════════════════════════════════════════════════════
-       TILE BUILDERS  (horizontal  72×28  +  vertical  28×72)
-       Uses whichever bloom function is assigned to the section.
-    ════════════════════════════════════════════════════════════ */
-    function buildHorizTile(c, bloomFn) {
-      var W = 72, H = 28, mid = H/2, cx = W/2, cy = mid+1;
-      var lCol = c.leaf, lD = darken(c.leaf, 25);
-      var body =
-        horizVine(W, H, 8, c.vine) +
-        stemH(cx, mid, cy-7, c.vine) +
-        leaf(cx-7, mid, 1, lCol, lD) +
-        leaf(cx+7, mid, -1, lCol, lD) +
-        /* small bud left */
-        '<ellipse cx="'+(cx-22)+'" cy="'+(mid-2)+'" rx="2.2" ry="3"' +
-        ' fill="'+rgba(c.main,0.72)+'" opacity="0.8"/>' +
-        '<path d="M'+(cx-24)+','+(mid+1)+' Q'+(cx-22)+','+(mid+5)+' '+(cx-20)+','+(mid+1)+'"' +
-        ' fill="'+lCol+'" opacity="0.65"/>' +
-        /* small bud right */
-        '<ellipse cx="'+(cx+22)+'" cy="'+(mid-2)+'" rx="2.2" ry="3"' +
-        ' fill="'+rgba(c.main,0.72)+'" opacity="0.8"/>' +
-        '<path d="M'+(cx+20)+','+(mid+1)+' Q'+(cx+22)+','+(mid+5)+' '+(cx+24)+','+(mid+1)+'"' +
-        ' fill="'+lCol+'" opacity="0.65"/>' +
-        /* main bloom */
-        bloomFn(cx, cy, c);
-      return toDataURI(wrapSVG(W, H, body));
-    }
-
-    function buildVertTile(c, bloomFn) {
-      var W = 28, H = 72, mid = W/2, cy = H/2, cx = mid-1;
-      var lCol = c.leaf, lD = darken(c.leaf, 25);
-      var body =
-        vertVine(W, H, 8, c.vine) +
-        stemV(mid, cy, cx+6, c.vine) +
-        leafV(mid, cy-7, 1, lCol, lD) +
-        leafV(mid, cy+7, -1, lCol, lD) +
-        /* small bud top */
-        '<ellipse cx="'+(mid-2)+'" cy="'+(cy-22)+'" rx="3" ry="2.2"' +
-        ' fill="'+rgba(c.main,0.72)+'" opacity="0.8"/>' +
-        '<path d="M'+(mid+1)+','+(cy-24)+' Q'+(mid+5)+','+(cy-22)+' '+(mid+1)+','+(cy-20)+'"' +
-        ' fill="'+lCol+'" opacity="0.65"/>' +
-        /* small bud bottom */
-        '<ellipse cx="'+(mid-2)+'" cy="'+(cy+22)+'" rx="3" ry="2.2"' +
-        ' fill="'+rgba(c.main,0.72)+'" opacity="0.8"/>' +
-        '<path d="M'+(mid+1)+','+(cy+20)+' Q'+(mid+5)+','+(cy+22)+' '+(mid+1)+','+(cy+24)+'"' +
-        ' fill="'+lCol+'" opacity="0.65"/>' +
-        /* main bloom */
-        bloomFn(cx, cy, c);
-      return toDataURI(wrapSVG(W, H, body));
-    }
-
-    /* ════════════════════════════════════════════════════════════
-       PER-SECTION PALETTE LOOKUP
-    ════════════════════════════════════════════════════════════ */
-    var sectionTones = {
-      'wedding-day': { leaf:'#7ecb8e', vine:'#4a9c4a' },
-      'countdown':   { leaf:'#68ddaa', vine:'#38b87a' },
-      'intro':       { leaf:'#a8d97e', vine:'#6ab84a' },
-      'family':      { leaf:'#b8a0e8', vine:'#8a72c8' },
-      'balagrah':    { leaf:'#5fe0bd', vine:'#30b08a' },
-      'hosts':       { leaf:'#f9a8bb', vine:'#cc6070' },
-      'festivities': { leaf:'#8ac854', vine:'#5a9830' },
-      'story':       { leaf:'#e0a0f8', vine:'#a050c0' },
-      'gallery':     { leaf:'#78d8f8', vine:'#38a8d8' },
-      'rsvp':        { leaf:'#68d8a8', vine:'#38a878' },
-      'hero':        { leaf:'#8fdcff', vine:'#4aabcc' },
-      'quote-band':  { leaf:'#f8d07a', vine:'#c09438' }
-    };
-
-    /* ════════════════════════════════════════════════════════════
-       INJECT FLORAL FRAMES
-    ════════════════════════════════════════════════════════════ */
-    document.querySelectorAll('section:not(.no-card-frame), .hero, .quote-band')
-    .forEach(function(section) {
-      if (section.querySelector(':scope > .sf-frame')) return;
-
-      var dsec   = section.dataset && section.dataset.section;
-      var isHero = section.classList.contains('hero');
-      var isQuote= section.classList.contains('quote-band');
-      var key    = dsec || (isHero ? 'hero' : 'quote-band');
-      var tones  = sectionTones[key] || { leaf:'#88cc88', vine:'#558855' };
-      var bloomFn= flowerMap[key]    || bloomRose;
-
-      var cs = getComputedStyle(section);
-      var main   = cs.getPropertyValue('--frame-main').trim()   || '#9fe8ff';
-      var accent = cs.getPropertyValue('--frame-accent').trim() || '#62d7ff';
-      var ornC   = cs.getPropertyValue('--ornament-c').trim()   || '#ffffff';
-
-      if (isHero) {
-        main   = cs.getPropertyValue('--invite-main').trim()      || '#d9b45a';
-        accent = cs.getPropertyValue('--invite-secondary').trim() || '#5ee7ff';
-        ornC   = '#fffbe0';
-      }
-
-      var colors = {
-        main:   main,
-        accent: accent,
-        leaf:   tones.leaf,
-        vine:   tones.vine,
-        centre: darken(ornC, 18)
-      };
-
-      var hUrl = buildHorizTile(colors, bloomFn);
-      var vUrl = buildVertTile(colors, bloomFn);
-
-      var frame = document.createElement('span');
-      frame.className = 'sf-frame';
-      frame.setAttribute('aria-hidden', 'true');
-
-      ['sf-top', 'sf-bottom', 'sf-left', 'sf-right'].forEach(function(cls) {
-        var strip = document.createElement('span');
-        strip.className = 'sf-strip ' + cls;
-        var isVert = cls === 'sf-left' || cls === 'sf-right';
-        strip.style.backgroundImage = 'url("' + (isVert ? vUrl : hUrl) + '")';
-        frame.appendChild(strip);
-      });
-
-      section.appendChild(frame);
-    });
-
-    /* ════════════════════════════════════════════════════════════
-       ENVELOPE GARLAND STRIPS
-       Use the same rose buildHorizTile / buildVertTile already
-       defined above to populate the 4 garland spans on the envelope.
-    ════════════════════════════════════════════════════════════ */
     (function () {
-      var envColors = {
-        main:   '#d9b45a',
-        accent: '#ff72c3',
-        leaf:   '#8fdcff',
-        vine:   '#4aabcc',
-        centre: '#fffbe0'
-      };
-      var hUrl = buildHorizTile(envColors, bloomRose);
-      var vUrl = buildVertTile(envColors, bloomRose);
-      var ids = { top: hUrl, bottom: hUrl, left: vUrl, right: vUrl };
-      Object.keys(ids).forEach(function (side) {
-        var el = document.getElementById('env-grl-' + side);
-        if (el) el.style.backgroundImage = 'url("' + ids[side] + '")';
-      });
-    }());
+      'use strict';
 
-  }());
+      /* ════════════════════════════════════════════
+         COLOUR HELPERS
+      ════════════════════════════════════════════ */
+      function parseColor(str) {
+        var c = (str || '').trim();
+        var h = c.match(/^#([0-9a-f]{3,8})$/i);
+        if (h) {
+          var s = h[1];
+          if (s.length === 3) s = s[0] + s[0] + s[1] + s[1] + s[2] + s[2];
+          return {
+            r: parseInt(s.slice(0, 2), 16), g: parseInt(s.slice(2, 4), 16),
+            b: parseInt(s.slice(4, 6), 16), a: 1
+          };
+        }
+        var m = c.match(/rgba?\s*\(\s*([\d.]+)[,\s]+([\d.]+)[,\s]+([\d.]+)(?:[,\/\s]+([\d.]+))?\s*\)/i);
+        if (m) return { r: +m[1], g: +m[2], b: +m[3], a: m[4] != null ? +m[4] : 1 };
+        return { r: 160, g: 160, b: 160, a: 1 };
+      }
+      function rgba(str, a) {
+        var p = parseColor(str);
+        return 'rgba(' + p.r + ',' + p.g + ',' + p.b + ',' + (a != null ? a : p.a) + ')';
+      }
+      function lighten(str, n) {
+        var p = parseColor(str);
+        return 'rgb(' + Math.min(255, p.r + n) + ',' + Math.min(255, p.g + n) + ',' + Math.min(255, p.b + n) + ')';
+      }
+      function darken(str, n) {
+        var p = parseColor(str);
+        return 'rgb(' + Math.max(0, p.r - n) + ',' + Math.max(0, p.g - n) + ',' + Math.max(0, p.b - n) + ')';
+      }
+
+      /* ════════════════════════════════════════════
+         SHARED HELPERS — vine path + leaf + bud
+      ════════════════════════════════════════════ */
+
+      /* Horizontal wavy vine across W×H tile, gap around cx±gap */
+      function horizVine(W, H, gap, vine) {
+        var mid = H / 2, cx = W / 2;
+        return '<path d="M0,' + mid +
+          ' C8,' + (mid - 5) + ' 16,' + (mid + 5) + ' 24,' + mid +
+          ' C32,' + (mid - 5) + ' 40,' + (mid + 5) + ' ' + (cx - gap) + ',' + mid +
+          ' M' + (cx + gap) + ',' + mid +
+          ' C' + (cx + 12) + ',' + (mid - 5) + ' ' + (cx + 20) + ',' + (mid + 5) + ' ' + (cx + 28) + ',' + mid +
+          ' C' + (cx + 36) + ',' + (mid - 5) + ' ' + (cx + 44) + ',' + (mid + 5) + ' ' + W + ',' + mid + '"' +
+          ' stroke="' + vine + '" stroke-width="1.2" fill="none" opacity="0.68"/>';
+      }
+      /* Vertical wavy vine across W×H tile, gap around cy±gap */
+      function vertVine(W, H, gap, vine) {
+        var mid = W / 2, cy = H / 2;
+        return '<path d="M' + mid + ',0' +
+          ' C' + (mid - 5) + ',8 ' + (mid + 5) + ',16 ' + mid + ',24' +
+          ' C' + (mid - 5) + ',32 ' + (mid + 5) + ',40 ' + mid + ',' + (cy - gap) +
+          ' M' + mid + ',' + (cy + gap) +
+          ' C' + (mid - 5) + ',' + (cy + 12) + ' ' + (mid + 5) + ',' + (cy + 20) + ' ' + mid + ',' + (cy + 28) +
+          ' C' + (mid - 5) + ',' + (cy + 36) + ' ' + (mid + 5) + ',' + (cy + 44) + ' ' + mid + ',' + H + '"' +
+          ' stroke="' + vine + '" stroke-width="1.2" fill="none" opacity="0.68"/>';
+      }
+
+      /* Small almond leaf at (lx,ly), pointing right (flip=-1 for left) */
+      function leaf(lx, ly, flip, leafCol, leafD) {
+        var s = flip || 1;
+        return '<path d="M' + lx + ',' + ly +
+          ' C' + (lx + s * 8) + ',' + (ly - 6) + ' ' + (lx + s * 11) + ',' + (ly - 1) + ' ' + (lx + s * 5) + ',' + (ly + 4) + ' Z"' +
+          ' fill="' + leafCol + '" opacity="0.76"/>' +
+          '<line x1="' + lx + '" y1="' + ly + '" x2="' + (lx + s * 9) + '" y2="' + (ly + 0.5) + '"' +
+          ' stroke="' + leafD + '" stroke-width="0.55" opacity="0.5"/>';
+      }
+      /* Vertical leaf pointing down (flip=-1 for up) */
+      function leafV(lx, ly, flip, leafCol, leafD) {
+        var s = flip || 1;
+        return '<path d="M' + lx + ',' + ly +
+          ' C' + (lx - 6) + ',' + (ly + s * 8) + ' ' + (lx - 1) + ',' + (ly + s * 11) + ' ' + (lx + 4) + ',' + (ly + s * 5) + ' Z"' +
+          ' fill="' + leafCol + '" opacity="0.76"/>' +
+          '<line x1="' + lx + '" y1="' + ly + '" x2="' + (lx + 0.5) + '" y2="' + (ly + s * 9) + '"' +
+          ' stroke="' + leafD + '" stroke-width="0.55" opacity="0.5"/>';
+      }
+
+      /* Horizontal stem (vine→bloom) */
+      function stemH(cx, mid, cy, vine) {
+        return '<line x1="' + cx + '" y1="' + mid + '" x2="' + cx + '" y2="' + cy + '"' +
+          ' stroke="' + vine + '" stroke-width="0.9" opacity="0.65"/>';
+      }
+      /* Vertical stem */
+      function stemV(mid, cy, bx, vine) {
+        return '<line x1="' + mid + '" y1="' + cy + '" x2="' + bx + '" y2="' + cy + '"' +
+          ' stroke="' + vine + '" stroke-width="0.9" opacity="0.65"/>';
+      }
+
+      /* Wrap SVG content in a tile */
+      function wrapSVG(W, H, body) {
+        return '<svg xmlns="http://www.w3.org/2000/svg" width="' + W + '" height="' + H + '"' +
+          ' viewBox="0 0 ' + W + ' ' + H + '" overflow="visible">' + body + '</svg>';
+      }
+      function toDataURI(svg) {
+        return 'data:image/svg+xml,' + encodeURIComponent(svg);
+      }
+
+      /* ════════════════════════════════════════════════════════════
+         6 FLOWER BLOOM BUILDERS
+         Each returns an SVG fragment string centred at (cx, cy).
+         vert=true rotates the layout 90° for side strips.
+      ════════════════════════════════════════════════════════════ */
+
+      /* ── 1. ROSE  (5-petal layered rose, for intro / hero) ─── */
+      function bloomRose(cx, cy, c) {
+        var p = '', ip = '';
+        for (var i = 0; i < 5; i++) {
+          var a = (i * 72 - 90) * Math.PI / 180;
+          var ox = cx + Math.cos(a) * 5.8, oy = cy + Math.sin(a) * 5.8;
+          p += '<ellipse cx="' + ox.toFixed(1) + '" cy="' + oy.toFixed(1) + '" rx="5.2" ry="3.3"' +
+            ' transform="rotate(' + (i * 72 - 90) + ' ' + ox.toFixed(1) + ' ' + oy.toFixed(1) + ')"' +
+            ' fill="' + (i % 2 === 0 ? c.main : lighten(c.main, 38)) + '" opacity="0.92"/>';
+        }
+        for (var j = 0; j < 5; j++) {
+          var a2 = (j * 72 - 54) * Math.PI / 180;
+          var ix = cx + Math.cos(a2) * 3.1, iy = cy + Math.sin(a2) * 3.1;
+          ip += '<ellipse cx="' + ix.toFixed(1) + '" cy="' + iy.toFixed(1) + '" rx="3" ry="1.9"' +
+            ' transform="rotate(' + (j * 72 - 54) + ' ' + ix.toFixed(1) + ' ' + iy.toFixed(1) + ')"' +
+            ' fill="' + darken(c.main, 28) + '" opacity="0.86"/>';
+        }
+        return p + ip +
+          '<circle cx="' + cx + '" cy="' + cy + '" r="2.3" fill="' + c.centre + '" opacity="0.96"/>';
+      }
+
+      /* ── 2. LOTUS  (pointed petals, for family / balagrah) ── */
+      function bloomLotus(cx, cy, c) {
+        var r = '', stroke = darken(c.main, 20);
+        /* 6 outer pointed petals */
+        for (var i = 0; i < 6; i++) {
+          var a = (i * 60 - 90) * Math.PI / 180;
+          var tipX = cx + Math.cos(a) * 10, tipY = cy + Math.sin(a) * 10;
+          var lX = cx + Math.cos(a - 0.45) * 5, lY = cy + Math.sin(a - 0.45) * 5;
+          var rX = cx + Math.cos(a + 0.45) * 5, rY = cy + Math.sin(a + 0.45) * 5;
+          r += '<path d="M' + cx + ',' + cy + ' Q' + lX.toFixed(1) + ',' + lY.toFixed(1) + ' ' + tipX.toFixed(1) + ',' + tipY.toFixed(1) +
+            ' Q' + rX.toFixed(1) + ',' + rY.toFixed(1) + ' ' + cx + ',' + cy + ' Z"' +
+            ' fill="' + (i % 2 === 0 ? c.main : lighten(c.main, 30)) + '" stroke="' + stroke + '" stroke-width="0.4" opacity="0.88"/>';
+        }
+        /* 4 inner petals, half size */
+        for (var j = 0; j < 4; j++) {
+          var a2 = (j * 90 - 45) * Math.PI / 180;
+          var t2x = cx + Math.cos(a2) * 5.5, t2y = cy + Math.sin(a2) * 5.5;
+          var l2x = cx + Math.cos(a2 - 0.5) * 3, l2y = cy + Math.sin(a2 - 0.5) * 3;
+          var r2x = cx + Math.cos(a2 + 0.5) * 3, r2y = cy + Math.sin(a2 + 0.5) * 3;
+          r += '<path d="M' + cx + ',' + cy + ' Q' + l2x.toFixed(1) + ',' + l2y.toFixed(1) + ' ' + t2x.toFixed(1) + ',' + t2y.toFixed(1) +
+            ' Q' + r2x.toFixed(1) + ',' + r2y.toFixed(1) + ' ' + cx + ',' + cy + ' Z"' +
+            ' fill="' + lighten(c.main, 50) + '" opacity="0.8"/>';
+        }
+        return r + '<circle cx="' + cx + '" cy="' + cy + '" r="2.8" fill="' + lighten(c.centre, 20) + '" opacity="0.95"/>';
+      }
+
+      /* ── 3. MARIGOLD  (many tiny petals in rings, for festivities / wedding-day) ── */
+      function bloomMarigold(cx, cy, c) {
+        var r = '';
+        /* outer ring: 12 petals */
+        for (var i = 0; i < 12; i++) {
+          var a = (i * 30) * Math.PI / 180;
+          var px = cx + Math.cos(a) * 7.5, py = cy + Math.sin(a) * 7.5;
+          r += '<ellipse cx="' + px.toFixed(1) + '" cy="' + py.toFixed(1) + '" rx="3.5" ry="2"' +
+            ' transform="rotate(' + (i * 30) + ' ' + px.toFixed(1) + ' ' + py.toFixed(1) + ')"' +
+            ' fill="' + (i % 3 === 0 ? c.main : i % 3 === 1 ? lighten(c.main, 35) : darken(c.main, 15)) + '" opacity="0.88"/>';
+        }
+        /* inner ring: 8 petals */
+        for (var j = 0; j < 8; j++) {
+          var a2 = (j * 45 + 22.5) * Math.PI / 180;
+          var jx = cx + Math.cos(a2) * 4, jy = cy + Math.sin(a2) * 4;
+          r += '<ellipse cx="' + jx.toFixed(1) + '" cy="' + jy.toFixed(1) + '" rx="2.5" ry="1.5"' +
+            ' transform="rotate(' + (j * 45 + 22.5) + ' ' + jx.toFixed(1) + ' ' + jy.toFixed(1) + ')"' +
+            ' fill="' + lighten(c.main, 20) + '" opacity="0.86"/>';
+        }
+        return r + '<circle cx="' + cx + '" cy="' + cy + '" r="2.5" fill="' + c.centre + '" opacity="0.97"/>';
+      }
+
+      /* ── 4. PLUMERIA / FRANGIPANI (5 wide petals, for hosts / story) ── */
+      function bloomPlumeria(cx, cy, c) {
+        var r = '';
+        for (var i = 0; i < 5; i++) {
+          var a = (i * 72 - 90) * Math.PI / 180;
+          /* petal base points */
+          var bLa = a - 0.38, bRa = a + 0.38;
+          var bLx = cx + Math.cos(bLa) * 4, bLy = cy + Math.sin(bLa) * 4;
+          var bRx = cx + Math.cos(bRa) * 4, bRy = cy + Math.sin(bRa) * 4;
+          /* petal tip */
+          var tipX = cx + Math.cos(a) * 11.5, tipY = cy + Math.sin(a) * 11.5;
+          /* ctrl points — rounded tip */
+          var c1x = cx + Math.cos(a - 0.28) * 9.5, c1y = cy + Math.sin(a - 0.28) * 9.5;
+          var c2x = cx + Math.cos(a + 0.28) * 9.5, c2y = cy + Math.sin(a + 0.28) * 9.5;
+          var fill = i % 2 === 0 ? c.main : lighten(c.main, 45);
+          r += '<path d="M' + bLx.toFixed(1) + ',' + bLy.toFixed(1) +
+            ' Q' + c1x.toFixed(1) + ',' + c1y.toFixed(1) + ' ' + tipX.toFixed(1) + ',' + tipY.toFixed(1) +
+            ' Q' + c2x.toFixed(1) + ',' + c2y.toFixed(1) + ' ' + bRx.toFixed(1) + ',' + bRy.toFixed(1) + ' Z"' +
+            ' fill="' + fill + '" opacity="0.9"/>';
+          /* centre stripe on each petal */
+          r += '<line x1="' + cx + '" y1="' + cy + '" x2="' + tipX.toFixed(1) + '" y2="' + tipY.toFixed(1) + '"' +
+            ' stroke="' + lighten(c.main, 55) + '" stroke-width="0.7" opacity="0.5"/>';
+        }
+        return r + '<circle cx="' + cx + '" cy="' + cy + '" r="3" fill="' + c.centre + '" opacity="0.96"/>';
+      }
+
+      /* ── 5. CHERRY BLOSSOM (4 heart-shaped petals + 1, for gallery / countdown) ── */
+      function bloomCherryBlossom(cx, cy, c) {
+        var r = '';
+        var pCol = lighten(c.main, 50);
+        var pColD = c.main;
+        for (var i = 0; i < 5; i++) {
+          var a = (i * 72 - 90) * Math.PI / 180;
+          var tipX = cx + Math.cos(a) * 9, tipY = cy + Math.sin(a) * 9;
+          /* heart-shaped: two lobes */
+          var la = a - 0.55, ra = a + 0.55;
+          var lLx = cx + Math.cos(la) * 6.5, lLy = cy + Math.sin(la) * 6.5;
+          var lRx = cx + Math.cos(ra) * 6.5, lRy = cy + Math.sin(ra) * 6.5;
+          var baseLa = a - 0.3, baseRa = a + 0.3;
+          var bLx = cx + Math.cos(baseLa) * 3.5, bLy = cy + Math.sin(baseLa) * 3.5;
+          var bRx = cx + Math.cos(baseRa) * 3.5, bRy = cy + Math.sin(baseRa) * 3.5;
+          r += '<path d="M' + bLx.toFixed(1) + ',' + bLy.toFixed(1) +
+            ' Q' + lLx.toFixed(1) + ',' + lLy.toFixed(1) + ' ' + tipX.toFixed(1) + ',' + tipY.toFixed(1) +
+            ' Q' + lRx.toFixed(1) + ',' + lRy.toFixed(1) + ' ' + bRx.toFixed(1) + ',' + bRy.toFixed(1) + ' Z"' +
+            ' fill="' + (i % 2 === 0 ? pCol : pColD) + '" opacity="0.9"/>';
+        }
+        /* stamens */
+        for (var k = 0; k < 8; k++) {
+          var sa = (k * 45) * Math.PI / 180;
+          var sx = cx + Math.cos(sa) * 5.5, sy = cy + Math.sin(sa) * 5.5;
+          r += '<line x1="' + cx + '" y1="' + cy + '" x2="' + sx.toFixed(1) + '" y2="' + sy.toFixed(1) + '"' +
+            ' stroke="' + c.centre + '" stroke-width="0.6" opacity="0.55"/>' +
+            '<circle cx="' + sx.toFixed(1) + '" cy="' + sy.toFixed(1) + '" r="0.8" fill="' + c.centre + '" opacity="0.7"/>';
+        }
+        return r + '<circle cx="' + cx + '" cy="' + cy + '" r="2" fill="' + lighten(c.centre, 30) + '" opacity="0.95"/>';
+      }
+
+      /* ── 6. HIBISCUS (5 trumpet petals with prominent stamens, for rsvp / balagrah) ── */
+      function bloomHibiscus(cx, cy, c) {
+        var r = '';
+        var deep = darken(c.main, 35);
+        for (var i = 0; i < 5; i++) {
+          var a = (i * 72 - 90) * Math.PI / 180;
+          var tipX = cx + Math.cos(a) * 11, tipY = cy + Math.sin(a) * 11;
+          var la = a - 0.42, ra = a + 0.42;
+          var lW = cx + Math.cos(la) * 8, lH = cy + Math.sin(la) * 8;
+          var rW = cx + Math.cos(ra) * 8, rH = cy + Math.sin(ra) * 8;
+          var bLx = cx + Math.cos(a - 0.32) * 3.5, bLy = cy + Math.sin(a - 0.32) * 3.5;
+          var bRx = cx + Math.cos(a + 0.32) * 3.5, bRy = cy + Math.sin(a + 0.32) * 3.5;
+          /* main petal */
+          r += '<path d="M' + bLx.toFixed(1) + ',' + bLy.toFixed(1) +
+            ' Q' + lW.toFixed(1) + ',' + lH.toFixed(1) + ' ' + tipX.toFixed(1) + ',' + tipY.toFixed(1) +
+            ' Q' + rW.toFixed(1) + ',' + rH.toFixed(1) + ' ' + bRx.toFixed(1) + ',' + bRy.toFixed(1) + ' Z"' +
+            ' fill="' + (i % 2 === 0 ? c.main : lighten(c.main, 30)) + '" opacity="0.88"/>';
+          /* vein lines */
+          r += '<line x1="' + cx + '" y1="' + cy + '" x2="' + tipX.toFixed(1) + '" y2="' + tipY.toFixed(1) + '"' +
+            ' stroke="' + deep + '" stroke-width="0.55" opacity="0.4"/>';
+        }
+        /* stamen column */
+        for (var k = 0; k < 7; k++) {
+          var sa = (k * 51.4) * Math.PI / 180;
+          var sx = cx + Math.cos(sa) * 4.5, sy = cy + Math.sin(sa) * 4.5;
+          r += '<circle cx="' + sx.toFixed(1) + '" cy="' + sy.toFixed(1) + '" r="0.9" fill="' + c.centre + '" opacity="0.8"/>';
+        }
+        return r + '<circle cx="' + cx + '" cy="' + cy + '" r="2.5" fill="' + darken(c.centre, 10) + '" opacity="0.95"/>';
+      }
+
+      /* ════════════════════════════════════════════════════════════
+         SECTION → FLOWER DESIGN MAPPING
+      ════════════════════════════════════════════════════════════ */
+      var flowerMap = {
+        'hero': bloomRose,
+        'intro': bloomRose,
+        'wedding-day': bloomMarigold,
+        'countdown': bloomCherryBlossom,
+        'family': bloomLotus,
+        'balagrah': bloomHibiscus,
+        'hosts': bloomPlumeria,
+        'festivities': bloomMarigold,
+        'story': bloomPlumeria,
+        'gallery': bloomCherryBlossom,
+        'rsvp': bloomHibiscus,
+        'quote-band': bloomLotus
+      };
+
+      /* ════════════════════════════════════════════════════════════
+         TILE BUILDERS  (horizontal  72×28  +  vertical  28×72)
+         Uses whichever bloom function is assigned to the section.
+      ════════════════════════════════════════════════════════════ */
+      function buildHorizTile(c, bloomFn) {
+        var W = 72, H = 28, mid = H / 2, cx = W / 2, cy = mid + 1;
+        var lCol = c.leaf, lD = darken(c.leaf, 25);
+        var body =
+          horizVine(W, H, 8, c.vine) +
+          stemH(cx, mid, cy - 7, c.vine) +
+          leaf(cx - 7, mid, 1, lCol, lD) +
+          leaf(cx + 7, mid, -1, lCol, lD) +
+          /* small bud left */
+          '<ellipse cx="' + (cx - 22) + '" cy="' + (mid - 2) + '" rx="2.2" ry="3"' +
+          ' fill="' + rgba(c.main, 0.72) + '" opacity="0.8"/>' +
+          '<path d="M' + (cx - 24) + ',' + (mid + 1) + ' Q' + (cx - 22) + ',' + (mid + 5) + ' ' + (cx - 20) + ',' + (mid + 1) + '"' +
+          ' fill="' + lCol + '" opacity="0.65"/>' +
+          /* small bud right */
+          '<ellipse cx="' + (cx + 22) + '" cy="' + (mid - 2) + '" rx="2.2" ry="3"' +
+          ' fill="' + rgba(c.main, 0.72) + '" opacity="0.8"/>' +
+          '<path d="M' + (cx + 20) + ',' + (mid + 1) + ' Q' + (cx + 22) + ',' + (mid + 5) + ' ' + (cx + 24) + ',' + (mid + 1) + '"' +
+          ' fill="' + lCol + '" opacity="0.65"/>' +
+          /* main bloom */
+          bloomFn(cx, cy, c);
+        return toDataURI(wrapSVG(W, H, body));
+      }
+
+      function buildVertTile(c, bloomFn) {
+        var W = 28, H = 72, mid = W / 2, cy = H / 2, cx = mid - 1;
+        var lCol = c.leaf, lD = darken(c.leaf, 25);
+        var body =
+          vertVine(W, H, 8, c.vine) +
+          stemV(mid, cy, cx + 6, c.vine) +
+          leafV(mid, cy - 7, 1, lCol, lD) +
+          leafV(mid, cy + 7, -1, lCol, lD) +
+          /* small bud top */
+          '<ellipse cx="' + (mid - 2) + '" cy="' + (cy - 22) + '" rx="3" ry="2.2"' +
+          ' fill="' + rgba(c.main, 0.72) + '" opacity="0.8"/>' +
+          '<path d="M' + (mid + 1) + ',' + (cy - 24) + ' Q' + (mid + 5) + ',' + (cy - 22) + ' ' + (mid + 1) + ',' + (cy - 20) + '"' +
+          ' fill="' + lCol + '" opacity="0.65"/>' +
+          /* small bud bottom */
+          '<ellipse cx="' + (mid - 2) + '" cy="' + (cy + 22) + '" rx="3" ry="2.2"' +
+          ' fill="' + rgba(c.main, 0.72) + '" opacity="0.8"/>' +
+          '<path d="M' + (mid + 1) + ',' + (cy + 20) + ' Q' + (mid + 5) + ',' + (cy + 22) + ' ' + (mid + 1) + ',' + (cy + 24) + '"' +
+          ' fill="' + lCol + '" opacity="0.65"/>' +
+          /* main bloom */
+          bloomFn(cx, cy, c);
+        return toDataURI(wrapSVG(W, H, body));
+      }
+
+      /* ════════════════════════════════════════════════════════════
+         PER-SECTION PALETTE LOOKUP
+      ════════════════════════════════════════════════════════════ */
+      var sectionTones = {
+        'wedding-day': { leaf: '#7ecb8e', vine: '#4a9c4a' },
+        'countdown': { leaf: '#68ddaa', vine: '#38b87a' },
+        'intro': { leaf: '#a8d97e', vine: '#6ab84a' },
+        'family': { leaf: '#b8a0e8', vine: '#8a72c8' },
+        'balagrah': { leaf: '#5fe0bd', vine: '#30b08a' },
+        'hosts': { leaf: '#f9a8bb', vine: '#cc6070' },
+        'festivities': { leaf: '#8ac854', vine: '#5a9830' },
+        'story': { leaf: '#e0a0f8', vine: '#a050c0' },
+        'gallery': { leaf: '#78d8f8', vine: '#38a8d8' },
+        'rsvp': { leaf: '#68d8a8', vine: '#38a878' },
+        'hero': { leaf: '#8fdcff', vine: '#4aabcc' },
+        'quote-band': { leaf: '#f8d07a', vine: '#c09438' }
+      };
+
+      /* ════════════════════════════════════════════════════════════
+         INJECT FLORAL FRAMES
+      ════════════════════════════════════════════════════════════ */
+      document.querySelectorAll('section:not(.no-card-frame), .hero, .quote-band')
+        .forEach(function (section) {
+          if (section.querySelector(':scope > .sf-frame')) return;
+
+          var dsec = section.dataset && section.dataset.section;
+          var isHero = section.classList.contains('hero');
+          var isQuote = section.classList.contains('quote-band');
+          var key = dsec || (isHero ? 'hero' : 'quote-band');
+          var tones = sectionTones[key] || { leaf: '#88cc88', vine: '#558855' };
+          var bloomFn = flowerMap[key] || bloomRose;
+
+          var cs = getComputedStyle(section);
+          var main = cs.getPropertyValue('--frame-main').trim() || '#9fe8ff';
+          var accent = cs.getPropertyValue('--frame-accent').trim() || '#62d7ff';
+          var ornC = cs.getPropertyValue('--ornament-c').trim() || '#ffffff';
+
+          if (isHero) {
+            main = cs.getPropertyValue('--invite-main').trim() || '#d9b45a';
+            accent = cs.getPropertyValue('--invite-secondary').trim() || '#5ee7ff';
+            ornC = '#fffbe0';
+          }
+
+          var colors = {
+            main: main,
+            accent: accent,
+            leaf: tones.leaf,
+            vine: tones.vine,
+            centre: darken(ornC, 18)
+          };
+
+          var hUrl = buildHorizTile(colors, bloomFn);
+          var vUrl = buildVertTile(colors, bloomFn);
+
+          var frame = document.createElement('span');
+          frame.className = 'sf-frame';
+          frame.setAttribute('aria-hidden', 'true');
+
+          ['sf-top', 'sf-bottom', 'sf-left', 'sf-right'].forEach(function (cls) {
+            var strip = document.createElement('span');
+            strip.className = 'sf-strip ' + cls;
+            var isVert = cls === 'sf-left' || cls === 'sf-right';
+            strip.style.backgroundImage = 'url("' + (isVert ? vUrl : hUrl) + '")';
+            frame.appendChild(strip);
+          });
+
+          section.appendChild(frame);
+        });
+
+      /* ════════════════════════════════════════════════════════════
+         ENVELOPE GARLAND STRIPS
+         Use the same rose buildHorizTile / buildVertTile already
+         defined above to populate the 4 garland spans on the envelope.
+      ════════════════════════════════════════════════════════════ */
+      (function () {
+        var envColors = {
+          main: '#d9b45a',
+          accent: '#ff72c3',
+          leaf: '#8fdcff',
+          vine: '#4aabcc',
+          centre: '#fffbe0'
+        };
+        var hUrl = buildHorizTile(envColors, bloomRose);
+        var vUrl = buildVertTile(envColors, bloomRose);
+        var ids = { top: hUrl, bottom: hUrl, left: vUrl, right: vUrl };
+        Object.keys(ids).forEach(function (side) {
+          var el = document.getElementById('env-grl-' + side);
+          if (el) el.style.backgroundImage = 'url("' + ids[side] + '")';
+        });
+      }());
+
+    }());
   </script>
 </body>
 
